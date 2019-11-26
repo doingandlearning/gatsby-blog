@@ -14,21 +14,21 @@ module.exports = {
     disqusShortname: '',
     menu: [
       {
-        label: 'Home',
+        label: 'Blog',
         path: '/',
       },
-      {
-        label: 'Articles',
-        path: '/articles/',
-      },
-      {
-        label: 'About me',
-        path: '/about/',
-      },
-      {
-        label: 'Contact me',
-        path: '/contact/',
-      },
+      // {
+      //   label: 'Blog',
+      //   path: '/blog/',
+      // },
+      // {
+      //   label: 'About me',
+      //   path: '/about/',
+      // },
+      // {
+      //   label: 'Contact me',
+      //   path: '/contact/',
+      // },
     ],
     author: {
       name: 'Kevin Cunningham',
