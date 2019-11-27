@@ -4,12 +4,12 @@ author: Stephen O'Rourke
 publication_date: 2019
 rating: 4
 genre: Mystery
-date: '2019-11-26T20:26:10.206Z'
+date: '2019-11-23T17:00:00+0000'
 layout: book
 draft: false
 path: '/book/the-crown-agent/'
 category: 'Fiction'
-image: './image.jpg'
+coverImage: '../images/the-crown-agent.jpg'
 tags:
   - 'Fiction'
   - 'Mystery'

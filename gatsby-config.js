@@ -46,6 +46,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `
@@ -129,10 +135,6 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: 'UA-73379983-2' },
-    },
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {

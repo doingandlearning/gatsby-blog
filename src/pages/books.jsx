@@ -53,10 +53,8 @@ export const pageQuery = graphql`
   ) {
     edges {
       node {
-        
         id
-        html
-
+        html        
         frontmatter {
           title
           author
