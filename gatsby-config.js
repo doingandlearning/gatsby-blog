@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://lumen.netlify.com'
+const url = 'https://www.kevincunningham.co.uk'
 
 module.exports = {
   siteMetadata: {
@@ -17,10 +17,10 @@ module.exports = {
         label: 'Blog',
         path: '/',
       },
-      // {
-      //   label: 'Blog',
-      //   path: '/blog/',
-      // },
+      {
+        label: 'Books',
+        path: '/books/',
+      },
       // {
       //   label: 'About me',
       //   path: '/about/',
@@ -68,6 +68,12 @@ module.exports = {
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.url + edge.node.fields.slug,
                   guid: site.siteMetadata.url + edge.node.fields.slug,
+                  rating: edge.node.frontmatter.rating,
+                  author: edge.node.frontmatter.author,
+                  publication_date: edge.node.frontmatter.publication_date,
+                  genre: edge.node.frontmatter.genre,
+                  category: edge.node.frontmatter.category,
+                  slug: edge.node.frontmatter.path,
                   custom_elements: [{ 'content:encoded': edge.node.html }],
                 })
               ),

@@ -1,0 +1,10 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.book {
+    @include margin-bottom(1.25);
+    &:last-child {
+        @include margin-bottom(.5);
+    }
+   
+}

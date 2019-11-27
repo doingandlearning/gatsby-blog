@@ -5,33 +5,29 @@ import Layout from '../components/Layout'
 import Post from '../components/Post'
 import Sidebar from '../components/Sidebar'
 
-class IndexRoute extends React.Component {
-  render() {
-    const items = []
-    const { title, subtitle } = this.props.data.site.siteMetadata
-    const posts = this.props.data.allMarkdownRemark.edges
+function IndexPage(props) {
+  const items = []
+    const { title, subtitle } = props.data.site.siteMetadata
+    const posts = props.data.allMarkdownRemark.edges
     posts.forEach(post => {
       items.push(<Post data={post} key={post.node.fields.slug} />)
     })
-
-    return (
-      <Layout>
-        <div>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={subtitle} />
-          </Helmet>
-          <Sidebar {...this.props} />
-          <div className="content">
-            <div className="content__inner">{items}</div>
-          </div>
-        </div>
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+    <div>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={subtitle} />
+      </Helmet>
+      <Sidebar {...props} />
+      <div className="content">
+        <div className="content__inner">{items}</div>
+      </div>
+    </div>
+  </Layout>
+  )
 }
-
-export default IndexRoute
+export default IndexPage
 
 export const pageQuery = graphql`
   query IndexQuery {

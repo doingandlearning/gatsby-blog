@@ -1,7 +1,7 @@
 {
-  "version": "3.0.0",
-  "name": "gatsby-v2-starter-lumen",
-  "description": "Simple starter for Gatsby",
+  "version": "1.0.0",
+  "name": "adapted-from-lumen",
+  "description": "Kevin Cunningham Blog",
   "main": "n/a",
   "scripts": {
     "develop": "gatsby develop",
@@ -13,15 +13,13 @@
     "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
-  "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
+  "repository": "",
   "keywords": [
     "gatsby",
     "blog",
-    "react",
-    "theme",
-    "starter"
+    "react"
   ],
-  "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
+  "author": "Kevin Cunningham <gatsby@kevincunningham.co.uk>",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -29,7 +27,7 @@
     "gatsby-plugin-catch-links": "^2.0.4",
     "gatsby-plugin-feed": "^2.0.8",
     "gatsby-plugin-google-analytics": "^2.0.6",
-    "gatsby-plugin-google-fonts": "latest",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-offline": "^2.0.6",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sass": "^2.0.1",
@@ -62,6 +60,7 @@
     "gh-pages": "^1.1.0",
     "lost": "^8.2.0",
     "postcss-pxtorem": "^4.0.1",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "tailwindcss": "^1.1.4"
   }
 }
