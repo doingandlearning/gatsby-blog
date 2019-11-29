@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment'
 import './style.scss'
-import Img from "gatsby-image"
 
 function Book({data}) {
   const {
