@@ -37,8 +37,10 @@ function Book({data}) {
   const StarRating = ({ totalStars, select }) => (
       <div className="star-rating">
         {[...Array(totalStars)].map((n, i) => (
-          <div className="star">{i}</div>
-
+                  <Star
+                  key={i}
+                  selected={i < select}
+                />
         ))}
       </div>
     );

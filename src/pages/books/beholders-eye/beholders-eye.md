@@ -1,22 +1,28 @@
 ---
-title: The Crown Agent
-author: Stephen O'Rourke
-publication_date: 2019
-rating: 4
-genre: Mystery
-date: '2019-11-23T17:00:00+0000'
+title: Beholder's Eye
+author: Julie E Czerneda
+publication_date: 1998
+rating: 3
+genre: Sci-Fi
+date: '2019-11-26T00:00:00'
 layout: book
 draft: false
-path: '/book/the-crown-agent/'
+path: '/book/beholders-eye/'
 category: 'Fiction'
-coverImage: '../images/the-crown-agent.jpg'
+coverImage: '../images/beholders-eye.jpg'
 tags:
-  - 'Fiction'
-  - 'Mystery'
-  - '1800s'
+  - 'Space'
+  - 'Shape-shifting'
 ---
-This was a fun book that brought an unsuspecting doctor through Scotland and to
-Jamaica to unravel a mystery. I read on a gloomy day, warm under a blanket while
-the rain beat against the windows. This certainly reflected the weather in most
-of the book and helped me get in the mood. If you like mystery novels mixed with
-some historical fiction then this is for you.
+As an old-school D&D player, I initially thought that this book might be set in
+the Forgotten Realms and refer to a Beholder. Not so, this is indeed about 
+appreciating what is in the eye of the beholder. 
+
+The protagonist is a 'young' shape-shifter of only a few centuries, just about
+trusted to control their powers. Part of a web/hive mind that shares experience
+by eating and being eaten, they hide their existence while also trying to save
+the universe.
+
+A fun, easy read. It's an older book now and the tropes felt well trodden. At 
+various points I felt I'd read the book before but I think there are just a lot
+of books that deal with similar themes in similar ways.
