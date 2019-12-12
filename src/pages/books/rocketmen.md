@@ -25,3 +25,7 @@ I felt the book could do with a bit more editing - there were a few times that
 facts and anecdotes were repeated and the style was sometimes disjointed and 
 a bit dull. Saying that, I enjoyed the book overall and have added to my facts
 about the space program and this first successful moonshot.
+
+I was struck by how male this book was. The title should have given it away but
+still given all we've learned about women and POC being integral and overlooked
+in this race, it was disappointing not to hear and see more.
