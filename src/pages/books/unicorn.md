@@ -7,7 +7,7 @@ genre: Business/Tech
 date: '2020-01-20T00:00:00+0000'
 layout: book
 draft: false
-path: '/book/wayward/'
+path: '/book/unicorn/'
 category: 'Non-Fiction'
 coverImage: '../images/rocket-men.jpg'
 ---
