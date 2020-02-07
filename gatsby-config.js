@@ -12,6 +12,7 @@ module.exports = {
       'Freelance web-developer, building interesting things on the web. Currently based in Brighton.',
     copyright: '© All rights reserved.',
     disqusShortname: '',
+    description: 'Blog post of Kevin Cunningham',
     menu: [
       {
         label: 'Blog',
