@@ -13,9 +13,11 @@ tags:
 description: 'egghead workshop - React fundamentals'
 ---
 
-Lots of tutorials and guides tend to miss the React fundamentals and dive straight into actually building components and apps. Often, they often through in Redux and other technologies at the get-go which can make truly grasping the underlying concepts more challenging.
+Lots of tutorials and guides tend to miss the React fundamentals and dive straight into actually building components and apps. Often they throw in Redux and other technologies at the get-go which can make truly grasping the underlying concepts more challenging.
 
-This workshop is diving in and looking at those parts are sometimes overlooked. One of the great things about React is that it is mostly leveraging Javascript. No need to learn a special templating syntax but rather diving into Array and Object methods makes your code cleaner and more effective.
+This workshop dives in and looks at those parts that are sometimes overlooked.
+
+One of the great things about React is that it is mostly leveraging Javascript. No need to learn a special templating syntax but instead having a deep grasp of Array and Object methods makes your code cleaner and more effective.
 
 The first chunk of this workshop didn't need any tooling at all - it was all HTML files that were edited and played with allowing the right concepts to be the focus of exploration.
 
