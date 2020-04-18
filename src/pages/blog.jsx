@@ -9,7 +9,7 @@ class ArticleRoute extends React.Component {
   render() {
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
-    const posts = this.props.data.allMarkdownRemark.edges
+    const posts = this.props.data.allMdx.edges
     posts.forEach(post => {
       items.push(<Post data={post} key={post.node.fields.slug} />)
     })
@@ -52,7 +52,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
       filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
       sort: { order: DESC, fields: [frontmatter___date] }

@@ -9,7 +9,7 @@ class ArticleRoute extends React.Component {
   render() {
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
-    const posts = this.props.data.allMarkdownRemark.edges
+    const posts = this.props.data.allMdx.edges
     posts.forEach(post => {
       items.push(<Post data={post} key={post.node.fields.slug} />)
     })
@@ -23,6 +23,14 @@ class ArticleRoute extends React.Component {
           </Helmet>
           <Sidebar {...this.props} />
           <div className="content">
+            <h1 className="text-center text-2xl pt-5 underline font-bold">
+              Week Notes
+            </h1>
+            <p className="text-xl p-4">
+              I'm trying to get better at keeping these notes. The coronavirus
+              and the lockdown have made a focus on writing and thinking more
+              challenging for me, so we'll see.
+            </p>
             <div className="content__inner">{items}</div>
           </div>
         </div>
@@ -52,9 +60,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
-      filter: { frontmatter: { layout: { eq: "weeknotes" }, draft: { ne: true } } }
+      filter: {
+        frontmatter: { layout: { eq: "weeknotes" }, draft: { ne: true } }
+      }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {

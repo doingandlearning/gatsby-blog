@@ -126,7 +126,7 @@ The order of conflicting keys matters.
 
 In React, there actually aren’t a ton of things you have to learn to interact with forms beyond what you can do with regular DOM APIs and JavaScript. Which I think is pretty awesome.
 
-You can attach a submit handler to a form element with the onSubmit prop. This will be called with the submit event which has a target. That target is a reference to the <form> DOM node which has a reference to the elements of the form which can be used to get the values out of the form!
+You can attach a submit handler to a form element with the onSubmit prop. This will be called with the submit event which has a target. That target is a reference to the `<form>` DOM node which has a reference to the elements of the form which can be used to get the values out of the form!
 
 React uses SyntheticEvent when an event is triggered. This is for all intents and purposes just like a regular event but sometimes it might end up not behaving in the way you expect (async access of the event for example). You can access the native event with event.nativeEvent.
 

@@ -40,7 +40,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
       filter: { frontmatter: { layout: { eq: "wiki" }, draft: { ne: true } } }
       sort: { order: DESC, fields: [frontmatter___date] }

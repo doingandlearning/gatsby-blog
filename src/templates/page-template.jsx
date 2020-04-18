@@ -7,7 +7,7 @@ import PageTemplateDetails from '../components/PageTemplateDetails'
 class PageTemplate extends React.Component {
   render() {
     const { title, subtitle } = this.props.data.site.siteMetadata
-    const page = this.props.data.markdownRemark
+    const page = this.props.data.mdx
     const { title: pageTitle, description: pageDescription } = page.frontmatter
     const description = pageDescription !== null ? pageDescription : subtitle
 
@@ -46,9 +46,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
-      html
+      body
       frontmatter {
         title
         date

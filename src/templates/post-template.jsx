@@ -7,7 +7,7 @@ import PostTemplateDetails from '../components/PostTemplateDetails'
 class PostTemplate extends React.Component {
   render() {
     const { title, subtitle } = this.props.data.site.siteMetadata
-    const post = this.props.data.markdownRemark
+    const post = this.props.data.mdx
     const { title: postTitle, description: postDescription } = post.frontmatter
     const description = postDescription !== null ? postDescription : subtitle
 
@@ -42,9 +42,9 @@ export const pageQuery = graphql`
         url
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
-      html
+      body
       fields {
         tagSlugs
         slug

@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar'
 function IndexPage(props) {
   const items = []
     const { title, subtitle } = props.data.site.siteMetadata
-    const posts = props.data.allMarkdownRemark.edges
+    const posts = props.data.allMdx.edges
     posts.forEach(post => {
       items.push(<Post data={post} key={post.node.fields.slug} />)
     })
@@ -48,7 +48,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 1000
       filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
       sort: { order: DESC, fields: [frontmatter___date] }

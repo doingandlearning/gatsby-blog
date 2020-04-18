@@ -8,13 +8,13 @@ import Book from '../components/Book'
 
 function BookPage(props) {
   const items = []
-  const books = props.data.allMarkdownRemark.edges
+  const books = props.data.allMdx.edges
   books.forEach(book => {
     items.push(<Book data={book} key={book.id} />)
   })
   return (
     <Layout>
-     <Helmet>
+      <Helmet>
         <title>Books</title>
         <meta name="description" content="Some book reviews" />
       </Helmet>
@@ -29,44 +29,45 @@ function BookPage(props) {
 export default BookPage
 
 export const pageQuery = graphql`
-  query BooksQuery  {site {
-    siteMetadata {
-      title
-      subtitle
-      copyright
-      menu {
-        label
-        path
-      }
-      author {
-        name
-        email
-        twitter
-        github
-      }
-    }
-  }
-  allMarkdownRemark(
-    limit: 1000
-    filter: { frontmatter: { layout: { eq: "book" }, draft: { ne: true } } }
-    sort: { order: DESC, fields: [frontmatter___date] }
-  ) {
-    edges {
-      node {
-        id
-        html        
-        frontmatter {
-          title
-          author
-          rating
-          publication_date
-          genre
-          category
-          date
-          tags
+  query BooksQuery {
+    site {
+      siteMetadata {
+        title
+        subtitle
+        copyright
+        menu {
+          label
+          path
+        }
+        author {
+          name
+          email
+          twitter
+          github
         }
       }
     }
-}
-}
+    allMdx(
+      limit: 1000
+      filter: { frontmatter: { layout: { eq: "book" }, draft: { ne: true } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      edges {
+        node {
+          id
+          body
+          frontmatter {
+            title
+            author
+            rating
+            publication_date
+            genre
+            category
+            date
+            tags
+          }
+        }
+      }
+    }
+  }
 `

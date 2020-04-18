@@ -5,6 +5,7 @@ const slash = require('slash')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  console.log(actions)
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve('./src/templates/post-template.jsx')
@@ -16,10 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     graphql(`
       {
-        allMarkdownRemark(
-          limit: 1000
-          filter: { frontmatter: { draft: { ne: true } } }
-        ) {
+        allMdx(limit: 1000, filter: { frontmatter: { draft: { ne: true } } }) {
           edges {
             node {
               fields {
@@ -40,11 +38,17 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors)
       }
 
-      _.each(result.data.allMarkdownRemark.edges, edge => {
+      _.each(result.data.allMdx.edges, edge => {
         if (_.get(edge, 'node.frontmatter.layout') === 'page') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(pageTemplate),
+            context: { slug: edge.node.fields.slug },
+          })
+        } else if (_.get(edge, 'node.frontmatter.layout') === 'weeknotes') {
+          createPage({
+            path: edge.node.fields.slug,
+            component: slash(postTemplate),
             context: { slug: edge.node.fields.slug },
           })
         } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
@@ -98,12 +102,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const parsedFilePath = path.parse(node.absolutePath)
     const slug = `/${parsedFilePath.dir.split('---')[1]}/`
     createNodeField({ node, name: 'slug', value: slug })
-  } else if (
-    node.internal.type === 'MarkdownRemark' &&
-    typeof node.slug === 'undefined'
-  ) {
+  } else if (node.internal.type === 'Mdx' && typeof node.slug === 'undefined') {
     const fileNode = getNode(node.parent)
-    let slug = fileNode && fileNode.fields && fileNode.fields.slug || ''
+    let slug = (fileNode && fileNode.fields && fileNode.fields.slug) || ''
     if (typeof node.frontmatter.path !== 'undefined') {
       slug = node.frontmatter.path
     }
