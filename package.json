@@ -34,6 +34,7 @@
     "gatsby-plugin-google-fonts": "latest",
     "gatsby-plugin-mdx": "^1.0.70",
     "gatsby-plugin-offline": "^2.0.6",
+    "gatsby-plugin-postcss": "^2.2.3",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sass": "^2.0.1",
     "gatsby-plugin-sharp": "^2.0.6",
@@ -67,6 +68,7 @@
     "gh-pages": "^1.1.0",
     "lost": "^8.2.0",
     "postcss-pxtorem": "^4.0.1",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "tailwindcss": "^1.2.0"
   }
 }
