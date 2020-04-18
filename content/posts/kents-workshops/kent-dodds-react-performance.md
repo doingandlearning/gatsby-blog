@@ -47,7 +47,7 @@ To do this with React the syntax is:
 const SmileyFace = React.lazy(() => import('./smiley-face'))
 ```
 
-We need to wrap the lazy component in <React.Suspense> boundary and give it a fall
+We need to wrap the lazy component in `<React.Suspense>` boundary and give it a fall
 back.
 
 We can also prefetch either by using a `Magic Comment` which will instruct Webpack

@@ -7,16 +7,16 @@ module.exports = {
   siteMetadata: {
     url,
     siteUrl: url,
-    title: 'Blog by Kevin Cunningham',
+    title: 'Kevin Cunningham. Doing and Learning.',
     subtitle:
       'Freelance web-developer, building interesting things on the web. Currently based in Brighton.',
     copyright: '© All rights reserved.',
     disqusShortname: '',
-    description: 'Blog post of Kevin Cunningham',
+    description: 'Do. Learn.',
     menu: [
       {
         label: 'Blog',
-        path: '/',
+        path: '/blog',
       },
       {
         label: 'Books',
@@ -46,7 +46,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/articles`,
+        path: `${__dirname}/content/posts`,
         name: 'pages',
       },
     },

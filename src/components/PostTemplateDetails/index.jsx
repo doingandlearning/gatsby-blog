@@ -11,8 +11,8 @@ const PostTemplateDetails = props => {
 
   const homeBlock = (
     <div>
-      <Link className="post-single__home-button" to="/">
-        All Articles
+      <Link className="post-single__home-button" to="/blog">
+        All Posts
       </Link>
     </div>
   )

@@ -6,25 +6,55 @@ import Post from '../components/Post'
 import Sidebar from '../components/Sidebar'
 
 function IndexPage(props) {
-  const items = []
-    const { title, subtitle } = props.data.site.siteMetadata
-    const posts = props.data.allMdx.edges
-    posts.forEach(post => {
-      items.push(<Post data={post} key={post.node.fields.slug} />)
-    })
+  const { title, subtitle } = props.data.site.siteMetadata
+
   return (
     <Layout>
-    <div>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={subtitle} />
-      </Helmet>
-      <Sidebar {...props} />
-      <div className="content">
-        <div className="content__inner">{items}</div>
+      <div>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={subtitle} />
+        </Helmet>
+        <Sidebar {...props} />
+        <div className="content">
+          <div className="content__inner">
+            <h1 className="text-5xl pt-10">Hi, I'm Kevin Cunningham. 👋🏻</h1>
+            <p className="text-xl py-3">
+              Welcome to my little corner of the internet.
+            </p>
+            <p className="text py-3">
+              The idea of this space is to create a "digital garden", a place
+              for my ideas and thinking to have space to grow and develop in the
+              wild.
+            </p>
+            <p className="text py-3">
+              When I'm not tending my garden by reading or writing, I help build
+              prototypes and products. Find out more{' '}
+              <a href="https://spin-up.io">here</a>.
+            </p>
+            <p className="text py-3">
+              I also feed my love of learning, teaching and helping others
+              working alongside the awesome people at
+              <a href="https://egghead.io"> egghead</a>.
+            </p>
+            <p className="text py-3">
+              You can normally find me hanging around on Twitter as{' '}
+              <a href="https://twitter.com/dolearning">@dolearning </a>
+              or over on Github as{' '}
+              <a href="https://github.com/doingandlearning/">
+                doingandlearning
+              </a>
+              .
+            </p>
+            <p className="text py-3">
+              I love making new friends and chatting with interesting people -
+              online or in person. Feel free to reach out if you'd like to
+              connect.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </Layout>
+    </Layout>
   )
 }
 export default IndexPage
@@ -45,26 +75,6 @@ export const pageQuery = graphql`
           email
           twitter
           github
-        }
-      }
-    }
-    allMdx(
-      limit: 1000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-      sort: { order: DESC, fields: [frontmatter___date] }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            categorySlug
-          }
-          frontmatter {
-            title
-            date
-            category
-            description
-          }
         }
       }
     }

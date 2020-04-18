@@ -5,7 +5,6 @@ const slash = require('slash')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  console.log(actions)
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve('./src/templates/post-template.jsx')
