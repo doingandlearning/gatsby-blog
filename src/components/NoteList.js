@@ -8,13 +8,17 @@ export default ({ directories, location }) => {
       {Object.entries(directories)
         .filter(page => page[0] === path)
         .map(page => {
-          return page.map(item => {
+          console.log(page)
+          return page[1].map(item => {
             return (
-              <div key={item[0].url}>
-                <li>
-                  <a href={item[0].url}>{item[0].url}</a>
+              <div
+                key={item.url}
+                className="border-t-2 border-grey-900 border-dashed mt-6 pt-4"
+              >
+                <li className="py-4">
+                  <a href={item.url}>{item.url}</a>
                 </li>
-                {item[0].body && <MDXRenderer>{item[0].body}</MDXRenderer>}
+                <MDXRenderer>{item.body}</MDXRenderer>
               </div>
             )
           })
