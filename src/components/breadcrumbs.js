@@ -13,7 +13,6 @@ export default ({ location }) => {
   return (
     <nav>
       <a href={'/'}>~</a>
-
       {links.map(link => {
         return (
           <>

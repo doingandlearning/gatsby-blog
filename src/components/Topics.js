@@ -8,11 +8,7 @@ import Breadcrumbs from './Breadcrumbs'
 import Layout from './Layout'
 import _ from 'lodash'
 
-export default ({ directories, files, breadcrumbs = [], location }) => {
-  const breadcrumbsPath =
-    breadcrumbs.length > 0
-      ? ` | ${breadcrumbs.map(i => i.name).join(' | ')}`
-      : ''
+export default ({ directories, location }) => {
   const isTopLevel = _.get(location, 'pathname', '/') === '/wiki'
   return (
     <Layout>
@@ -23,11 +19,11 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
         <Sidebar location={location} />
         <div className="content">
           <h1>Wiki</h1>
-          {breadcrumbs.length ? (
-            <Breadcrumbs links={breadcrumbs} location={location} />
-          ) : null}
+          <Breadcrumbs location={location} />
           <TopicList directories={directories} location={location} />
-          {!isTopLevel && <NoteList files={files} />}
+          {!isTopLevel && (
+            <NoteList directories={directories} location={location} />
+          )}
         </div>
       </div>
     </Layout>

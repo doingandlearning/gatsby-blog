@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
+import SignUpForm from '../components/SignUpForm'
 
 function IndexPage(props) {
   const { title, subtitle } = props.data.site.siteMetadata
@@ -27,9 +28,9 @@ function IndexPage(props) {
               wild.
             </p>
             <p className="text py-3">
-              When I'm not tending my garden by reading or writing, I help build
-              prototypes and products. Find out more{' '}
-              <a href="https://spin-up.io">here</a>.
+              When I'm not tending my garden by reading or writing, I'm normally
+              hanging out with my wife and family or building prototypes and
+              products. Find out more <a href="https://spin-up.io">here</a>.
             </p>
             <p className="text py-3">
               I also feed my love of learning, teaching and helping others
@@ -50,6 +51,7 @@ function IndexPage(props) {
               online or in person. Feel free to reach out if you'd like to
               connect.
             </p>
+            {/* <SignUpForm /> */}
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
+            body
             parent {
               ... on File {
                 name
@@ -79,7 +80,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const groupedNotes = notes.reduce((acc, { node }) => {
     const { dir } = path.parse(node.parent.relativePath)
-
     if (!dir) {
       return acc
     }
@@ -94,20 +94,12 @@ exports.createPages = async ({ graphql, actions }) => {
     return acc
   }, {})
 
+  console.log(groupedNotes)
+
   Object.entries(groupedNotes).map(([key, value]) => {
-    const breadcrumbs = key.split(path.sep).reduce((acc, dir) => {
-      return [
-        ...acc,
-        {
-          name: dir,
-          url: path.join(wikiPath, dir),
-        },
-      ]
-    }, [])
     createPage({
       path: path.join(wikiPath, key),
       context: {
-        breadcrumbs,
         urls: value.map(v => v.url),
         groupedNotes,
       },
