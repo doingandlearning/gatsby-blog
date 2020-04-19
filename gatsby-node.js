@@ -3,94 +3,200 @@ const Promise = require('bluebird')
 const path = require('path')
 const slash = require('slash')
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve('./src/templates/post-template.jsx')
-    const pageTemplate = path.resolve('./src/templates/page-template.jsx')
-    const tagTemplate = path.resolve('./src/templates/tag-template.jsx')
-    const categoryTemplate = path.resolve(
-      './src/templates/category-template.jsx'
-    )
+  const wikiPath = '/wiki'
 
-    graphql(`
-      {
-        allMdx(limit: 1000, filter: { frontmatter: { draft: { ne: true } } }) {
-          edges {
-            node {
-              fields {
-                slug
+  const toNotesPath = node => {
+    const { dir } = path.parse(node.parent.relativePath)
+    return path.join(wikiPath, dir, node.parent.name)
+  }
+
+  const postTemplate = path.resolve('./src/templates/post-template.jsx')
+  const pageTemplate = path.resolve('./src/templates/page-template.jsx')
+  const weekNoteTemplate = path.resolve(
+    './src/templates/week-note-template.jsx'
+  )
+  const tagTemplate = path.resolve('./src/templates/tag-template.jsx')
+  const categoryTemplate = path.resolve('./src/templates/category-template.jsx')
+
+  const Note = require.resolve('./src/templates/note')
+  const Notes = require.resolve('./src/templates/notes')
+
+  const result = await graphql(`
+    {
+      allMdx(limit: 1000, filter: { frontmatter: { draft: { ne: true } } }) {
+        edges {
+          node {
+            id
+            parent {
+              ... on File {
+                name
+                base
+                relativePath
+                sourceInstanceName
               }
-              frontmatter {
-                tags
-                layout
-                category
-              }
+            }
+            fields {
+              slug
+            }
+            frontmatter {
+              tags
+              layout
+              category
             }
           }
         }
       }
-    `).then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-        reject(result.errors)
-      }
+    }
+  `)
 
-      _.each(result.data.allMdx.edges, edge => {
-        if (_.get(edge, 'node.frontmatter.layout') === 'page') {
-          createPage({
-            path: edge.node.fields.slug,
-            component: slash(pageTemplate),
-            context: { slug: edge.node.fields.slug },
-          })
-        } else if (_.get(edge, 'node.frontmatter.layout') === 'weeknotes') {
-          createPage({
-            path: edge.node.fields.slug,
-            component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug },
-          })
-        } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
-          createPage({
-            path: edge.node.fields.slug,
-            component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug },
-          })
-
-          let tags = []
-          if (_.get(edge, 'node.frontmatter.tags')) {
-            tags = tags.concat(edge.node.frontmatter.tags)
+  const siteData = await graphql(`
+    {
+      site {
+        siteMetadata {
+          title
+          subtitle
+          copyright
+          menu {
+            label
+            path
           }
-
-          tags = _.uniq(tags)
-          _.each(tags, tag => {
-            const tagPath = `/tags/${_.kebabCase(tag)}/`
-            createPage({
-              path: tagPath,
-              component: tagTemplate,
-              context: { tag },
-            })
-          })
-
-          let categories = []
-          if (_.get(edge, 'node.frontmatter.category')) {
-            categories = categories.concat(edge.node.frontmatter.category)
+          author {
+            name
+            email
+            twitter
+            github
           }
-
-          categories = _.uniq(categories)
-          _.each(categories, category => {
-            const categoryPath = `/categories/${_.kebabCase(category)}/`
-            createPage({
-              path: categoryPath,
-              component: categoryTemplate,
-              context: { category },
-            })
-          })
         }
+      }
+    }
+  `)
+  if (result.errors) {
+    console.log(result.errors)
+    throw new Error(`Could not query pages`, result.errors)
+  }
+
+  const { allMdx } = result.data
+  console.log(siteData)
+
+  const notes = allMdx.edges.filter(
+    ({ node }) => node.parent.sourceInstanceName === 'wiki'
+  )
+
+  // Create notes pages
+  notes.forEach(({ node }) => {
+    createPage({
+      path: toNotesPath(node),
+      context: {
+        ...node,
+        topic: node.parent.name,
+      },
+      component: Note,
+    })
+  })
+
+  const notesUrls = notes.map(({ node }) => toNotesPath(node))
+
+  const groupedNotes = notes.reduce((acc, { node }) => {
+    const { dir } = path.parse(node.parent.relativePath)
+
+    if (!dir) {
+      return acc
+    }
+
+    acc[dir] = acc[dir] || []
+    acc[dir].push({
+      pagePath: path.join(wikiPath, dir),
+      url: toNotesPath(node),
+      ...node,
+    })
+
+    return acc
+  }, {})
+
+  Object.entries(groupedNotes).map(([key, value]) => {
+    const breadcrumbs = key.split(path.sep).reduce((acc, dir) => {
+      return [
+        ...acc,
+        {
+          name: dir,
+          url: path.join(wikiPath, dir),
+        },
+      ]
+    }, [])
+    createPage({
+      path: path.join(wikiPath, key),
+      context: {
+        breadcrumbs,
+        data: siteData,
+        urls: value.map(v => v.url),
+      },
+      component: Notes,
+    })
+  })
+
+  createPage({
+    path: wikiPath,
+    context: {
+      urls: notesUrls,
+      groupedNotes,
+      data: siteData,
+    },
+    component: Notes,
+  })
+
+  _.each(result.data.allMdx.edges, edge => {
+    if (_.get(edge, 'node.frontmatter.layout') === 'page') {
+      createPage({
+        path: edge.node.fields.slug,
+        component: slash(pageTemplate),
+        context: { slug: edge.node.fields.slug },
+      })
+    } else if (_.get(edge, 'node.frontmatter.layout') === 'weeknotes') {
+      createPage({
+        path: edge.node.fields.slug,
+        component: slash(weekNoteTemplate),
+        context: { slug: edge.node.fields.slug },
+      })
+    } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
+      createPage({
+        path: edge.node.fields.slug,
+        component: slash(postTemplate),
+        context: { slug: edge.node.fields.slug },
       })
 
-      resolve()
-    })
+      let tags = []
+      if (_.get(edge, 'node.frontmatter.tags')) {
+        tags = tags.concat(edge.node.frontmatter.tags)
+      }
+
+      tags = _.uniq(tags)
+      _.each(tags, tag => {
+        const tagPath = `/tags/${_.kebabCase(tag)}/`
+        createPage({
+          path: tagPath,
+          component: tagTemplate,
+          context: { tag },
+        })
+      })
+
+      let categories = []
+      if (_.get(edge, 'node.frontmatter.category')) {
+        categories = categories.concat(edge.node.frontmatter.category)
+      }
+
+      categories = _.uniq(categories)
+      _.each(categories, category => {
+        const categoryPath = `/categories/${_.kebabCase(category)}/`
+        createPage({
+          path: categoryPath,
+          component: categoryTemplate,
+          context: { category },
+        })
+      })
+    }
   })
 }
 

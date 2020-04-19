@@ -9,7 +9,7 @@ module.exports = {
     siteUrl: url,
     title: 'Kevin Cunningham. Doing and Learning.',
     subtitle:
-      'Freelance web-developer, building interesting things on the web. Currently based in Brighton.',
+      'Freelance web-developer, building interesting things on the web. Based in Brighton.',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     description: 'Do. Learn.',
@@ -60,7 +60,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/wiki`,
+        path: `${__dirname}/content/wiki`,
         name: 'wiki',
       },
     },
@@ -108,6 +108,7 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          'gatsby-plugin-og-image',
         ],
       },
     },

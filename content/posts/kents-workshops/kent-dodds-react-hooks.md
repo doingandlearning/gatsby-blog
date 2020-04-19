@@ -107,9 +107,9 @@ setSquares(currentSquares => {
 
 If you are using the previous state to update the state (particularly async) always use this function form.
 
-## useRef and useEffect: DOM interaction
+## `useRef` and useEffect: DOM interaction
 
-useRef - you can change a value without triggering a re-render. A ref is an object with a current property which can mutated freely.
+`useRef` - you can change a value without triggering a re-render. A ref is an object with a current property which can mutated freely.
 
 We can use the ref to target a dom node which is useful for implementing JS libraries that act directly on the DOM.
 
