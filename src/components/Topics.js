@@ -1,7 +1,7 @@
 import React from 'react'
 
 import TopicList from './TopicList'
-import FileList from './file-list'
+import NoteList from './NoteList'
 import Sidebar from './Sidebar'
 import Helmet from 'react-helmet'
 import Breadcrumbs from './breadcrumbs'
@@ -14,7 +14,6 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
       ? ` | ${breadcrumbs.map(i => i.name).join(' | ')}`
       : ''
   const isTopLevel = _.get(location, 'pathname', '/') === '/wiki'
-
   return (
     <Layout>
       <div>
@@ -26,7 +25,7 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
           <h1>Wiki</h1>
           {breadcrumbs.length ? <Breadcrumbs links={breadcrumbs} /> : null}
           <TopicList directories={directories} location={location} />
-          {!isTopLevel && <FileList files={files} />}
+          {!isTopLevel && <NoteList files={files} />}
         </div>
       </div>
     </Layout>
