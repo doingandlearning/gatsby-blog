@@ -25,7 +25,7 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
         <div className="content">
           <h1>Wiki</h1>
           {breadcrumbs.length ? <Breadcrumbs links={breadcrumbs} /> : null}
-          <TopicList directories={directories} />
+          <TopicList directories={directories} location={location} />
           {!isTopLevel && <FileList files={files} />}
         </div>
       </div>

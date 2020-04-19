@@ -109,6 +109,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         breadcrumbs,
         urls: value.map(v => v.url),
+        groupedNotes,
       },
       component: Topics,
     })
