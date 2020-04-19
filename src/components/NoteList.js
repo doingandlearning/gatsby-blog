@@ -1,8 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
-
 export default ({ files }) => {
-  console.log(files)
   return (
     <ul>
       {files.map(url => (

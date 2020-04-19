@@ -4,7 +4,7 @@ import TopicList from './TopicList'
 import NoteList from './NoteList'
 import Sidebar from './Sidebar'
 import Helmet from 'react-helmet'
-import Breadcrumbs from './breadcrumbs'
+import Breadcrumbs from './Breadcrumbs'
 import Layout from './Layout'
 import _ from 'lodash'
 
@@ -23,7 +23,9 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
         <Sidebar location={location} />
         <div className="content">
           <h1>Wiki</h1>
-          {breadcrumbs.length ? <Breadcrumbs links={breadcrumbs} /> : null}
+          {breadcrumbs.length ? (
+            <Breadcrumbs links={breadcrumbs} location={location} />
+          ) : null}
           <TopicList directories={directories} location={location} />
           {!isTopLevel && <NoteList files={files} />}
         </div>
