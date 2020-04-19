@@ -43,7 +43,7 @@ function Book({ data }) {
   return (
     <div className="book">
       <div className="cover">
-        <h2 class="title">
+        <h2 className="title">
           {title} - <em>{author}</em>
         </h2>
         {/* <Img fluid={coverImage.childImageSharp.fluid} /> */}

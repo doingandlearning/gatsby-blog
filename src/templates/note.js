@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
 
-import Note from '../components/note'
+import Note from '../components/Note'
 
 export default Note
 

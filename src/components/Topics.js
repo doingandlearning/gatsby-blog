@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DirectoryList from './directory-list'
+import TopicList from './TopicList'
 import FileList from './file-list'
 import Sidebar from './Sidebar'
 import Helmet from 'react-helmet'
@@ -25,7 +25,8 @@ export default ({ directories, files, breadcrumbs = [], location }) => {
         <div className="content">
           <h1>Wiki</h1>
           {breadcrumbs.length ? <Breadcrumbs links={breadcrumbs} /> : null}
-          <DirectoryList directories={directories} />
+          <TopicList directories={directories} />
+          {!isTopLevel && <FileList files={files} />}
         </div>
       </div>
     </Layout>

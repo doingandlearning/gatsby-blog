@@ -6,12 +6,14 @@ import { Folder } from 'react-feather'
 export default ({ directories }) =>
   isPresent(directories) ? (
     <>
-      <div>
+      <div className="flex justify-between flex-wrap">
         {Object.entries(directories).map(([key, value]) => (
-          <a href={value[0].pagePath}>
-            <div key={key}>
-              <Folder style={{ marginRight: '10px' }} />
-              <span>{key}</span>
+          <a
+            className="text-white hover:text-black m-4 bg-gray-500 w-1/3 text-white hover:bg-gray-200 text-center uppercase p-6"
+            href={value[0].pagePath}
+          >
+            <div className="" key={key}>
+              {key}
             </div>
           </a>
         ))}

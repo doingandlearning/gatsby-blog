@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const categoryTemplate = path.resolve('./src/templates/category-template.jsx')
 
   const Note = require.resolve('./src/templates/note')
-  const Notes = require.resolve('./src/templates/notes')
+  const Topics = require.resolve('./src/templates/topics-template')
 
   const result = await graphql(`
     {
@@ -52,34 +52,12 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const siteData = await graphql(`
-    {
-      site {
-        siteMetadata {
-          title
-          subtitle
-          copyright
-          menu {
-            label
-            path
-          }
-          author {
-            name
-            email
-            twitter
-            github
-          }
-        }
-      }
-    }
-  `)
   if (result.errors) {
     console.log(result.errors)
     throw new Error(`Could not query pages`, result.errors)
   }
 
   const { allMdx } = result.data
-  console.log(siteData)
 
   const notes = allMdx.edges.filter(
     ({ node }) => node.parent.sourceInstanceName === 'wiki'
@@ -130,10 +108,9 @@ exports.createPages = async ({ graphql, actions }) => {
       path: path.join(wikiPath, key),
       context: {
         breadcrumbs,
-        data: siteData,
         urls: value.map(v => v.url),
       },
-      component: Notes,
+      component: Topics,
     })
   })
 
@@ -142,9 +119,8 @@ exports.createPages = async ({ graphql, actions }) => {
     context: {
       urls: notesUrls,
       groupedNotes,
-      data: siteData,
     },
-    component: Notes,
+    component: Topics,
   })
 
   _.each(result.data.allMdx.edges, edge => {
