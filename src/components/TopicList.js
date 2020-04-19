@@ -13,16 +13,19 @@ export default ({ directories, location }) => {
           .filter(item => _.isEqual(item[0].split('/').slice(0, -1), pathArray))
 
           .sort()
-          .map(([key, value]) => (
-            <a
-              className="text-white hover:text-black m-4 bg-gray-500 w-1/3 text-white hover:bg-gray-200 text-center uppercase p-6"
-              href={value[0].pagePath}
-            >
-              <div className="" key={key}>
-                {key}
-              </div>
-            </a>
-          ))}
+          .map(([key, value]) => {
+            const keyArray = key.split('/')
+            return (
+              <a
+                className="text-white hover:text-black m-4 bg-gray-500 w-1/3 text-white hover:bg-gray-200 text-center uppercase p-6"
+                href={value[0].pagePath}
+              >
+                <div className="" key={key}>
+                  {keyArray[keyArray.length - 1]}
+                </div>
+              </a>
+            )
+          })}
       </div>
       <hr />
     </>
