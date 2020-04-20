@@ -1,0 +1,1 @@
+Will Johnson and I took some notes on the Web Security Essentials course. These notes are [here](https://github.com/wjohnson85/eggheadio-web-security-essentails). I'd heard a lot about these different concepts but it was fun to see the vulnerabilities, leverage them and then patch them.

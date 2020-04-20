@@ -6,7 +6,6 @@ export default ({ directories, location }) => {
   const pathArray = _.get(location, 'pathname')
     .split('/')
     .splice(2)
-  console.log(directories, pathArray)
   return isPresent(directories) ? (
     <>
       <div className="flex justify-between flex-wrap">
@@ -19,22 +18,26 @@ export default ({ directories, location }) => {
               Object.entries(directories).filter(item =>
                 item[0].startsWith(key)
               ).length - 1
-            console.log(folderNumber)
             return (
-              <a
-                className="text-white relative hover:text-black m-4 bg-gray-500 w-1/3 text-white hover:bg-gray-200 text-center uppercase p-6"
-                href={value[0].pagePath}
-                key={value[0].pagePath}
-              >
-                <div className="" key={key}>
-                  {keyArray[keyArray.length - 1]}
-                </div>
-                <p className="text-left pt-4 color-gray-500 absolute left-0 bottom-0">
+              <div className="relative w-1/4 p-6 m-4 bg-gray-500 text-white hover:bg-gray-200 text-center uppercase rounded-lg">
+                <a
+                  className="text-white hover:text-black"
+                  href={value[0].pagePath}
+                  key={value[0].pagePath}
+                >
+                  <div className="" key={key}>
+                    {keyArray[keyArray.length - 1]}
+                  </div>
+                </a>
+                <div className="text-left pt-4 color-gray-500 absolute left-0 bottom-0">
                   <div className="flex">
                     {Array(folderNumber)
                       .fill('📂')
-                      .map(item => (
-                        <p className="no-underline hover:bg-red-200 hover:color-red-200">
+                      .map((item, idx) => (
+                        <p
+                          className="no-underline hover:bg-red-200 hover:color-red-200"
+                          key={`folder-${idx}`}
+                        >
                           {item}
                         </p>
                       ))}
@@ -42,17 +45,17 @@ export default ({ directories, location }) => {
                       <a
                         href={item.url}
                         className="no-underline hover:bg-red-200 hover:color-red-200"
+                        key={item.url}
                       >
                         '🗒'
                       </a>
                     ))}
                   </div>
-                </p>
-              </a>
+                </div>
+              </div>
             )
           })}
       </div>
-      <hr />
     </>
   ) : null
 }

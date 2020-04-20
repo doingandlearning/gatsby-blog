@@ -17,7 +17,7 @@ const NotePage = props => {
   return (
     <Layout>
       {homeBlock}
-      <MDXRenderer>{props.data.note.body}</MDXRenderer>
+      <MDXRenderer className="py-2">{props.data.note.body}</MDXRenderer>
     </Layout>
   )
 }

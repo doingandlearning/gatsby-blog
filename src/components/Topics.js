@@ -18,7 +18,7 @@ export default ({ directories, location }) => {
         </Helmet>
         <Sidebar location={location} />
         <div className="content">
-          <h1 className="text-center text-3xl">Personal Wiki</h1>
+          <h1 className="text-center text-3xl py-6">Personal Wiki</h1>
           <Breadcrumbs location={location} />
           {isTopLevel && (
             <div className="py-4">

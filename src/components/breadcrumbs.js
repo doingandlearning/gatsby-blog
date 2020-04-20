@@ -10,7 +10,7 @@ export default ({ location }) => {
   })
 
   return (
-    <nav className="text-black font-bold my-8" aria-label="Breadcrumb">
+    <nav className="text-black font-bold my-2" aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         {links.map((link, idx) => {
           return idx !== links.length - 1 ? (

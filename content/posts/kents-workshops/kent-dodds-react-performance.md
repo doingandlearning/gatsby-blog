@@ -3,7 +3,7 @@ title: 'Kent C. Dodds - React Performance'
 date: '2020-04-08T15:33:13+0000'
 layout: post
 draft: false
-path: '/posts/react-performance/'
+path: '/posts/kcd-react-performance/'
 category: 'React'
 tags:
   - 'Workshop'
