@@ -8,7 +8,6 @@ export default ({ directories, location }) => {
       {Object.entries(directories)
         .filter(page => page[0] === path)
         .map(page => {
-          console.log(page)
           return page[1].map(item => {
             return (
               <div

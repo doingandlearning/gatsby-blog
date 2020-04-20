@@ -94,8 +94,6 @@ exports.createPages = async ({ graphql, actions }) => {
     return acc
   }, {})
 
-  console.log(groupedNotes)
-
   Object.entries(groupedNotes).map(([key, value]) => {
     createPage({
       path: path.join(wikiPath, key),

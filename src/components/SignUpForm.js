@@ -53,7 +53,6 @@ const SignUp = props => {
   return (
     <div>
       <pre>{JSON.stringify(response, null, 2)}</pre>
-      Current1
       {!successful && (
         <div class="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div class="sm:mx-auto sm:w-full sm:max-w-md">

@@ -26,10 +26,10 @@ module.exports = {
         label: 'Week notes',
         path: '/weeknotes/',
       },
-      // {
-      //   label: 'About me',
-      //   path: '/about/',
-      // },
+      {
+        label: 'Wiki',
+        path: '/wiki',
+      },
       // {
       //   label: 'Contact me',
       //   path: '/contact/',
