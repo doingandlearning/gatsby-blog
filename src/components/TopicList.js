@@ -15,7 +15,11 @@ export default ({ directories, location }) => {
           .sort()
           .map(([key, value]) => {
             const keyArray = key.split('/')
-            console.log(key, value)
+            const folderNumber =
+              Object.entries(directories).filter(item =>
+                item[0].startsWith(key)
+              ).length - 1
+            console.log(folderNumber)
             return (
               <a
                 className="text-white relative hover:text-black m-4 bg-gray-500 w-1/3 text-white hover:bg-gray-200 text-center uppercase p-6"
@@ -26,14 +30,23 @@ export default ({ directories, location }) => {
                   {keyArray[keyArray.length - 1]}
                 </div>
                 <p className="text-left pt-4 color-gray-500 absolute left-0 bottom-0">
-                  {value.map(item => (
-                    <a
-                      href={item.url}
-                      className="no-underline hover:bg-red-200 hover:color-red-200"
-                    >
-                      '🗒'
-                    </a>
-                  ))}
+                  <div className="flex">
+                    {Array(folderNumber)
+                      .fill('📂')
+                      .map(item => (
+                        <p className="no-underline hover:bg-red-200 hover:color-red-200">
+                          {item}
+                        </p>
+                      ))}
+                    {value.map(item => (
+                      <a
+                        href={item.url}
+                        className="no-underline hover:bg-red-200 hover:color-red-200"
+                      >
+                        '🗒'
+                      </a>
+                    ))}
+                  </div>
                 </p>
               </a>
             )

@@ -35,12 +35,13 @@ export default ({ directories, location }) => {
               </p>
               <p className="pt-4">Here are my next tasks:</p>
               <ol className="list-disc ml-4 py-4">
-                <li>
+                <li className="line-through">
                   Have something similar to{' '}
                   <a href="https://busterbenson.com/piles/">piles</a> on each
                   topic card.{' '}
                 </li>
                 <li>Deal with images in directories</li>
+                <li>Improve styling</li>
               </ol>
             </div>
           )}
