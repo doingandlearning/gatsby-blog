@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import moment from 'moment'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import './style.scss'
+import SignUp from '../SignUpForm'
 
 const PostTemplateDetails = props => {
   const { subtitle, author } = props.data.site.siteMetadata
@@ -50,7 +51,8 @@ const PostTemplateDetails = props => {
         <div className="post-single__footer">
           {tagsBlock}
           <hr />
-          <p className="post-single__footer-text">
+          <SignUp />
+          <p className="post-single__footer-text text-center">
             {subtitle}
             <a
               href={`https://twitter.com/${author.twitter}`}

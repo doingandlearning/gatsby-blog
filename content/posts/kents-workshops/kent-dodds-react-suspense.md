@@ -161,3 +161,5 @@ The `SuspenseList` component has the following props:
   Note: `<React.Suspense />` components do not have to be direct children as in
   the example above. You can wrap them in `<div />`s or other components if you
   need.
+
+Interesting page in the docs [comparing traditional approaches to suspense](https://reactjs.org/docs/concurrent-mode-suspense.html#traditional-approaches-vs-suspense)

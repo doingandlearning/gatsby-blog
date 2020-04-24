@@ -7,6 +7,6 @@ I had the privilege to spend a lot of time in Kent C. Dodds workshops learning a
 - [Advanced React Patterns](/posts/kcd-advanced-patterns/)
 - [React Performance](/posts/kcd-react-performance/)
 - [React Suspense](/posts/kcd-react-suspense/)
-- [Building React Apps (Advanced)]() `to follow`
+- [Building React Apps (Advanced)](/posts/kcd-building-react-apps-2/)
 
 Given that this was more contact time than a lot of my modules at University, I learnt loads. Not just about React but about well-delivered online workshops.

@@ -51,7 +51,7 @@ function IndexPage(props) {
               online or in person. Feel free to reach out if you'd like to
               connect.
             </p>
-            {/* <SignUpForm /> */}
+            <SignUpForm />
           </div>
         </div>
       </div>

@@ -71,7 +71,13 @@ module.exports = {
         name: 'weeknotes',
       },
     },
-
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint:
+          'https://doingandlearning.us15.list-manage.com/subscribe/post?u=72c68ddfdcc887b8f2f127f3f&amp;id=5aab8a7f77', // add your MC list endpoint here; see instructions below
+      },
+    },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
