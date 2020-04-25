@@ -19,3 +19,25 @@ h3 {
 a {
   @apply text-blue-500;
 }
+
+hr {
+  margin-top: 52px;
+  margin-bottom: 52px;
+  border: 0;
+  color: #222;
+  display: block;
+  height: 26px;
+  margin-right: auto;
+  margin-left: auto;
+  background-size: 100% 26px;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 1px,
+    transparent 11px,
+    #222 11px,
+    #222 15px,
+    transparent 15px,
+    transparent 26px
+  );
+  width: 100px;
+}

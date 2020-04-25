@@ -57,7 +57,7 @@ const SignUp = () => {
       {!successful && (
         <div class="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 class="mt-6 text-center text-xl leading-9 font-extrabold text-gray-900">
+            <h2 class="mt-1 text-center text-xl leading-9 font-extrabold text-gray-900">
               Sign up for my newsletter
             </h2>
             <p className="font-light text-center">

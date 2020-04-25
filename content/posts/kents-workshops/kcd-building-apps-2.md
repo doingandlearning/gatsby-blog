@@ -23,7 +23,8 @@ After all I've looked at over the past month, this was a great opportunity to pu
 
 We then did more and moved all of the Auth logic out of the main app and moved to a useAuth() hook.
 
-[Michael Jackson video](https://www.youtube.com/watch?v=3XaXKiXtNjw&feature=emb_title)
+Here's a relevant and helpful talk from Michael Jackson.
+`youtube:https://www.youtube.com/watch?v=3XaXKiXtNjw&feature=emb_title`
 
 Interesting to see the source baseUrl which is slightly different for Next. There is an answer [here](https://stackoverflow.com/questions/59474480/using-baseurl-in-jsconfig-json-not-working-with-nextjs) which looks good.
 
@@ -33,8 +34,8 @@ Also, setting up a custom error from the `useAuth` hook was pretty helpful. We t
 
 When you have components are similar, we can often try to extract the code. The problem with that is we often end up passing down a lot of props to alter it. We can create more flexible components though.
 
-Kent has a talk to watch for more on this concept:
-[Simply React](https://www.youtube.com/watch?v=AiJ8tRRH0f8&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf)
+Kent has a talk to watch for more on this concept called `Simply React`:
+`youtube:https://www.youtube.com/watch?v=AiJ8tRRH0f`
 
 In our exercise, this ended up with a component that had more code. But it was clearer and more explicit. We used context, providers and `React.cloneElement` - what we got was composable and useful in a range of contexts.
 
@@ -50,5 +51,3 @@ This is a good follow-up and application of the performance workshop from earlie
 - Profiling
 
 We covered each of these in some way in the React Performance workshop but this was a great opportunity to increase those skills and put them to the test.
-
-## Render as you fetch

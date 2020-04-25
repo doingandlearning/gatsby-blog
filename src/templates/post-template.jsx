@@ -10,6 +10,11 @@ class PostTemplate extends React.Component {
     const post = this.props.data.mdx
     const { title: postTitle, description: postDescription } = post.frontmatter
     const description = postDescription !== null ? postDescription : subtitle
+    const tags = post.fields.tagSlugs
+
+    const openGraphImage = `hungry-brattain-538c0b.netlify.app/opengraph?title=${
+      post.frontmatter.title
+    }&tags=${tags.join(',')}`
 
     return (
       <Layout>
@@ -17,6 +22,13 @@ class PostTemplate extends React.Component {
           <Helmet>
             <title>{`${postTitle} - ${title}`}</title>
             <meta name="description" content={description} />
+            <meta charset="utf-8" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@dolearning" />
+            <meta name="twitter:creator" content="@dolearning" />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content={description} />
+            <meta name="twitter:image" content={openGraphImage} />
           </Helmet>
           <PostTemplateDetails {...this.props} />
         </div>
