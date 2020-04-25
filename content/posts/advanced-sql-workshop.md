@@ -10,7 +10,7 @@ tags:
   - 'SQL'
   - 'Tyler Clark'
   - 'egghead.io'
-description: 'egghead workshop on Advanced SQL'
+description: 'workshop on Advanced SQL'
 ---
 
 A few weeks ago, I attended a workshop on Advanced SQL given by Tyler Clark. It was a really interesting evening. Here were some of the things I learnt.

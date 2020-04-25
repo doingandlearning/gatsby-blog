@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - Advanced Hooks'
+description: 'workshop - Advanced Hooks'
 ---
 
 Here we go again! Round 4! This time we're diving into Advanced Hooks.

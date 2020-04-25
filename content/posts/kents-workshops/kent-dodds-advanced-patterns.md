@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - Advanced Patterns'
+description: 'workshop - Advanced Patterns'
 ---
 
 I'm over halfway through this masterclass on React with Kent. This has been a pretty

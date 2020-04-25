@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - React Performance'
+description: 'workshop - React Performance'
 ---
 
 This series of workshops has been a bit of a marathon. There has been so much

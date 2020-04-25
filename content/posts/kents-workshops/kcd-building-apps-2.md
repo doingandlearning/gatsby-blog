@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - Building React Apps (the Sequel)'
+description: 'workshop - Building React Apps (the Sequel)'
 ---
 
 There was a lot of setup today. Kent had done a lot of amazing work to be able to make the workshops work more smoothly and has a great CLI tool for switching between lessons and branches.

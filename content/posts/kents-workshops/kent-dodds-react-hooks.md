@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - React Hooks'
+description: 'workshop - React Hooks'
 ---
 
 Today was my second workshop with Kent - there are 8 over the next number of weeks and I'm going to blog briefly about each of them.

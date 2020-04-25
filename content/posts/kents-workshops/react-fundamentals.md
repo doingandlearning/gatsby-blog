@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - React fundamentals'
+description: 'workshop - React fundamentals'
 ---
 
 Lots of tutorials and guides tend to miss the React fundamentals and dive straight into actually building components and apps. Often they throw in Redux and other technologies at the get-go which can make truly grasping the underlying concepts more challenging.

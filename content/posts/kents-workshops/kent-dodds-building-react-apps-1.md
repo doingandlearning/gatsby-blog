@@ -10,7 +10,7 @@ tags:
   - 'React'
   - 'Kent C. Dodds'
   - 'egghead.io'
-description: 'egghead workshop - Building React Apps'
+description: 'workshop - Building React Apps'
 ---
 
 This is the 3rd of 8 workshops and is a new one for Kent. He kicked off and was
