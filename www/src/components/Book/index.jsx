@@ -4,16 +4,7 @@ import './style.scss'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 function Book({ data }) {
-  const {
-    title,
-    author,
-    rating,
-    publication_date,
-    genre,
-    category,
-    date,
-    tags,
-  } = data.node.frontmatter
+  const { title, author, rating, date, tags } = data.node.frontmatter
 
   const tagsBlock = (
     <div className="post-single__tags">

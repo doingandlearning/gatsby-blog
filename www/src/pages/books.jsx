@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Post from '../components/Post'
@@ -9,7 +9,7 @@ import Book from '../components/Book'
 function BookPage(props) {
   const items = []
   const books = props.data.allMdx.edges
-  books.forEach(book => {
+  books.forEach((book) => {
     items.push(<Book data={book} key={book.id} />)
   })
   return (

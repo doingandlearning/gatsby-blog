@@ -1,31 +1,40 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
+import Post from '../components/Post'
 import Sidebar from '../components/Sidebar'
-import TagTemplateDetails from '../components/TagTemplateDetails'
 
-class TagTemplate extends React.Component {
+class ArticleRoute extends React.Component {
   render() {
-    const { title } = this.props.data.site.siteMetadata
-    const { tag } = this.props.pageContext
+    const items = []
+    const { title, subtitle } = this.props.data.site.siteMetadata
+    const posts = this.props.data.allMdx.edges
+    posts.forEach((post) => {
+      items.push(<Post data={post} key={post.node.fields.slug} />)
+    })
 
     return (
       <Layout>
         <div>
-          <Helmet title={`All Posts tagged as "${tag}" - ${title}`} />
+          <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={subtitle} />
+          </Helmet>
           <Sidebar {...this.props} />
-          <TagTemplateDetails {...this.props} />
+          <div className="content">
+            <div className="content__inner">{items}</div>
+          </div>
         </div>
       </Layout>
     )
   }
 }
 
-export default TagTemplate
+export default ArticleRoute
 
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query SiteQuery {
     site {
       siteMetadata {
         title
@@ -45,13 +54,7 @@ export const pageQuery = graphql`
     }
     allMdx(
       limit: 1000
-      filter: {
-        frontmatter: {
-          tags: { in: [$tag] }
-          layout: { eq: "post" }
-          draft: { ne: true }
-        }
-      }
+      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
