@@ -12,7 +12,7 @@ const SignUp = () => {
   const [error, setError] = React.useState(false)
   const close = () => setShowDialog(false)
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError(false)
     const listFields = {
@@ -69,37 +69,39 @@ const SignUp = () => {
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
               <form onSubmit={handleSubmit}>
                 <div class="mb-6">
-                  <label
-                    for="name"
-                    class="block text-sm font-medium leading-5 text-gray-700"
-                  >
-                    First name
-                  </label>
                   <div class="mt-1 rounded-md shadow-sm">
+                    <label
+                      for="name"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      First name
+                    </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
                       class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                       value={name}
-                      onChange={e => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                 </div>
                 <div>
-                  <label
-                    for="email"
-                    class="block text-sm font-medium leading-5 text-gray-700"
-                  >
-                    Email address
-                  </label>
                   <div class="mt-1 rounded-md shadow-sm">
+                    <label
+                      for="email"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      Email address
+                    </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       required
                       class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                       value={email}
-                      onChange={e => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
