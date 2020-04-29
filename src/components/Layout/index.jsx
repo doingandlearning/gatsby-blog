@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import '../../assets/scss/init.scss'
 import '../../assets/styles.css'
 

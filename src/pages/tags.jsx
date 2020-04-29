@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import kebabCase from 'lodash/kebabCase'
 import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
@@ -22,7 +22,7 @@ class TagsRoute extends React.Component {
                 <div className="page__body">
                   <div className="tags">
                     <ul className="tags__list">
-                      {tags.map(tag => (
+                      {tags.map((tag) => (
                         <li key={tag.fieldValue} className="tags__list-item">
                           <Link
                             to={`/tags/${kebabCase(tag.fieldValue)}/`}

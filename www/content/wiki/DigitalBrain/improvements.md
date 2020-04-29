@@ -1,0 +1,5 @@
+- Add images
+- Bidirectional links
+- Preview on hover (reach/portals) (https://atomiks.github.io/tippyjs/)
+- Snippets
+- Different content rendering (books, movies, images, etc.)

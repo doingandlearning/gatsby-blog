@@ -1,7 +1,7 @@
 import kebabCase from 'lodash/kebabCase'
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
 
@@ -22,7 +22,7 @@ class CategoriesRoute extends React.Component {
                 <div className="page__body">
                   <div className="categories">
                     <ul className="categories__list">
-                      {categories.map(category => (
+                      {categories.map((category) => (
                         <li
                           key={category.fieldValue}
                           className="categories__list-item"

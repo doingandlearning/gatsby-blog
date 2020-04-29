@@ -27,7 +27,7 @@ module.exports = {
         path: '/weeknotes/',
       },
       {
-        label: 'Wiki',
+        label: 'Garden',
         path: '/wiki',
       },
       // {
@@ -100,7 +100,7 @@ module.exports = {
               urlOverrides: [
                 {
                   id: 'youtube',
-                  embedURL: videoId =>
+                  embedURL: (videoId) =>
                     `https://www.youtube-nocookie.com/embed/${videoId}`,
                 },
               ], // Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
@@ -138,7 +138,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) =>
-              allMdx.edges.map(edge =>
+              allMdx.edges.map((edge) =>
                 Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,

@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Post from '../components/Post'
@@ -10,7 +10,7 @@ class ArticleRoute extends React.Component {
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
     const posts = this.props.data.allMdx.edges
-    posts.forEach(post => {
+    posts.forEach((post) => {
       items.push(<Post data={post} key={post.node.fields.slug} />)
     })
 
