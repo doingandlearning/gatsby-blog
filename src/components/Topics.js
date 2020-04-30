@@ -17,8 +17,8 @@ export default ({ directories, location }) => {
           <title>Personal Wiki</title>
         </Helmet>
         <Sidebar location={location} />
-        <div className="content">
-          <h1 className="text-center text-3xl py-6">Personal Wiki</h1>
+        <div className="content px-6 sm:px-4">
+          <h1 className="text-center  text-3xl py-6">Personal Wiki</h1>
           <Breadcrumbs location={location} />
           {isTopLevel && (
             <div className="py-4">
@@ -28,20 +28,9 @@ export default ({ directories, location }) => {
                 my thinking is growing. The hope is this will be useful for me
                 and for you.
               </p>
-              <p className="py-2">
-                This is an experiment at the moment but hopefully can grow into
-                something useful. There are some placeholder topics to show how
-                it will work with more content.
-              </p>
               <p className="pt-4">Here are my next tasks:</p>
               <ol className="list-disc ml-4 py-4">
-                <li className="line-through">
-                  Have something similar to{' '}
-                  <a href="https://busterbenson.com/piles/">piles</a> on each
-                  topic card.{' '}
-                </li>
                 <li>Deal with images in directories</li>
-                <li>Improve styling</li>
               </ol>
             </div>
           )}

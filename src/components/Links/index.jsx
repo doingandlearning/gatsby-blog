@@ -38,12 +38,6 @@ class Links extends React.Component {
               <i className="icon-mail" />
             </a>
           </li>
-          {/* 
-          <li className="links__list-item">
-            <a href={`/rss.xml`}>
-              <i className="icon-rss" />
-            </a>
-          </li> */}
         </ul>
       </div>
     )

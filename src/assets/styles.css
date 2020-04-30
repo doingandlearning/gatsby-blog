@@ -47,3 +47,16 @@ hr {
     @apply py-4;
   }
 }
+
+.author-card {
+  background: url('../pages/photo.jpg') no-repeat;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-size: 100px 100px;
+}
+
+.author-card:hover {
+  background: url('../pages/brain.jpg') no-repeat;
+  background-size: 100px 100px;
+}

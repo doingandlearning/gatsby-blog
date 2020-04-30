@@ -12,8 +12,8 @@ class Menu extends React.Component {
           <li className="menu__list-item" key={item.path}>
             <Link
               to={item.path}
-              className="menu__list-item-link"
-              activeClassName="menu__list-item-link menu__list-item-link--active"
+              className="text-black"
+              activeClassName=" text-orange"
             >
               {item.label}
             </Link>
