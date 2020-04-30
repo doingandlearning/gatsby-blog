@@ -172,7 +172,9 @@ function IndexPage(props) {
                 {latestNoteNodes.map(({ node }) => {
                   return (
                     <div className="text-xl px-8">
-                      <Link to={`/wiki/${node.relativePath}`}>{node.name}</Link>
+                      <Link to={`/wiki/${node.relativePath.split('.')[0]}`}>
+                        {node.name}
+                      </Link>
                     </div>
                   )
                 })}

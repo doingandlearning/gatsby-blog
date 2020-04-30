@@ -27,3 +27,5 @@
 - Custom selection colour (see https://nesslabs.com/mind-garden)
 
 [x] Have latest post, latest note and featured posts on the front page.
+
+[ ] Fix the Twitter card to work with react-textfit
