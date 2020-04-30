@@ -2,6 +2,7 @@
 title: 'Premature Optimization'
 date: '2020-04-19T08:32:14+0000'
 layout: post
+featured: true
 draft: false
 path: '/posts/premature-optimization/'
 category: 'Thinking'

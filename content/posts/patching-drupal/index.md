@@ -3,7 +3,7 @@ title: Creating a Drupal Patch
 date: '2019-04-14T23:46:37.121Z'
 description: Using the Drupal issue queue to contribute a patch
 layout: post
-featured: true
+featured: false
 draft: false
 path: '/posts/drupal-patch'
 category: 'Drupal'

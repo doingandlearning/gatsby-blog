@@ -3,7 +3,7 @@ title: Protecting Credentials
 date: '2019-02-13T23:46:37.121Z'
 description: Keeping credentials out of the webroot
 layout: post
-featured: true
+featured: false
 draft: false
 path: '/posts/protecting-credentials'
 category: 'DevOps'

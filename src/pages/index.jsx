@@ -1,13 +1,116 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
 import SignUpForm from '../components/SignUpForm'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 
 function IndexPage(props) {
-  const { title, subtitle } = props.data.site.siteMetadata
-
+  const { latestNote, latestPost, featuredPost, site } = useStaticQuery(
+    graphql`
+      {
+        latestNote: allFile(
+          limit: 2
+          sort: { fields: modifiedTime, order: DESC }
+          filter: { sourceInstanceName: { eq: "wiki" } }
+        ) {
+          edges {
+            node {
+              id
+              parent {
+                ... on File {
+                  name
+                  base
+                  relativePath
+                  sourceInstanceName
+                }
+              }
+              name
+              relativePath
+            }
+          }
+        }
+        latestPost: allMdx(
+          limit: 1
+          filter: {
+            frontmatter: { layout: { eq: "post" }, draft: { ne: true } }
+          }
+          sort: { order: DESC, fields: [frontmatter___date] }
+        ) {
+          edges {
+            node {
+              parent {
+                ... on File {
+                  name
+                  base
+                  relativePath
+                  sourceInstanceName
+                }
+              }
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                description
+              }
+            }
+          }
+        }
+        featuredPost: allMdx(
+          filter: {
+            frontmatter: {
+              layout: { eq: "post" }
+              draft: { ne: true }
+              featured: { eq: true }
+            }
+          }
+          sort: { order: DESC, fields: [frontmatter___date] }
+        ) {
+          edges {
+            node {
+              parent {
+                ... on File {
+                  name
+                  base
+                  relativePath
+                  sourceInstanceName
+                }
+              }
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                description
+              }
+            }
+          }
+        }
+        site {
+          siteMetadata {
+            title
+            subtitle
+            copyright
+            menu {
+              label
+              path
+            }
+            author {
+              name
+              email
+              twitter
+              github
+            }
+          }
+        }
+      }
+    `
+  )
+  const { title, subtitle } = site.siteMetadata
+  const latestPostNode = latestPost.edges[0].node
+  const latestNoteNodes = latestNote.edges
+  const featuredPostNode = featuredPost.edges[0].node
   return (
     <Layout>
       <div>
@@ -52,6 +155,41 @@ function IndexPage(props) {
               connect.
             </p>
             <hr />
+            {latestPost && (
+              <details className="py-4">
+                <summary className="text-xl">Latest blog post</summary>
+                <div className="text-xl px-8">
+                  <Link to={latestPostNode.fields.slug}>
+                    {latestPostNode.frontmatter.title}
+                  </Link>
+                  <p>{latestPostNode.frontmatter.description}</p>
+                </div>
+              </details>
+            )}
+            {latestNote && (
+              <details className="py-4">
+                <summary className="text-xl">Latest Notes</summary>
+                {latestNoteNodes.map(({ node }) => {
+                  return (
+                    <div className="text-xl px-8">
+                      <Link to={`/wiki/${node.relativePath}`}>{node.name}</Link>
+                    </div>
+                  )
+                })}
+              </details>
+            )}
+            {featuredPost && (
+              <details className="py-4">
+                <summary className="text-xl">Featured blog post</summary>
+                <div className="text-xl px-8">
+                  <Link to={featuredPostNode.fields.slug}>
+                    {featuredPostNode.frontmatter.title}
+                  </Link>
+                  <p>{featuredPostNode.frontmatter.description}</p>
+                </div>
+              </details>
+            )}
+            <hr />
             <SignUpForm />
           </div>
         </div>
@@ -60,25 +198,3 @@ function IndexPage(props) {
   )
 }
 export default IndexPage
-
-export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        author {
-          name
-          email
-          twitter
-          github
-        }
-      }
-    }
-  }
-`
