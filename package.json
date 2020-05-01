@@ -24,6 +24,7 @@
   "author": "Kevin Cunningham <kevin@kevincunningham.co.uk>",
   "license": "MIT",
   "dependencies": {
+    "@aengusm/gatsby-theme-brain": "^1.0.8",
     "@mdx-js/mdx": "^1.6.0",
     "@mdx-js/react": "^1.6.0",
     "@reach/dialog": "^0.10.1",
