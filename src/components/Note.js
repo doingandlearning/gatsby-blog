@@ -5,9 +5,10 @@ import Layout from './Layout'
 import { Link } from 'gatsby'
 
 const NotePage = props => {
+  console.log(props)
   const homeBlock = (
     <Link
-      to={window.location.pathname
+      href={props.location.pathname
         .split('/')
         .slice(0, -1)
         .join('/')}

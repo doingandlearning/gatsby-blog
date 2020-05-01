@@ -15,4 +15,4 @@ Documentation:
 
 Workshop:
 
-- [Migrate from REST to GraphQL]() with Vladimir Novick
+- [Migrate from REST to GraphQL](./migrate_from_rest_to_graphql) with Vladimir Novick
