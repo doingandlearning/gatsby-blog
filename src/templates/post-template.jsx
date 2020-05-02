@@ -38,7 +38,7 @@ class PostTemplate extends React.Component {
 export default PostTemplate
 
 export const pageQuery = graphql`
-  query PostBySlug($slug: String!) {
+  query PostBySlug($slug: String!, $url: String!) {
     site {
       siteMetadata {
         title
@@ -64,6 +64,28 @@ export const pageQuery = graphql`
         tags
         date
         description
+      }
+    }
+    allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+      edges {
+        node {
+          wmTarget
+          wmSource
+          wmProperty
+          wmId
+          type
+          url
+          likeOf
+          author {
+            url
+            type
+            photo
+            name
+          }
+          content {
+            text
+          }
+        }
       }
     }
   }

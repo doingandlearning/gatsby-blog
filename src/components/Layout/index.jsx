@@ -11,6 +11,16 @@ class Layout extends React.Component {
       <div className="layout">
         <Helmet />
         {children}
+        <a
+          rel="webmention"
+          href="https://webmention.io/www.kevincunningham.co.uk/webmention"
+          className="hidden"
+        />
+        <a
+          rel="pingback"
+          href="https://webmention.io/www.kevincunningham.co.uk/xmlrpc"
+          className="hidden"
+        />
       </div>
     )
   }

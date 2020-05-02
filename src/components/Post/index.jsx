@@ -14,7 +14,7 @@ class Post extends React.Component {
     const { slug, categorySlug } = this.props.data.node.fields
 
     return (
-      <div className="post">
+      <div className="post h-card">
         <div className="post__meta">
           <time
             className="post__meta-time"
@@ -30,14 +30,20 @@ class Post extends React.Component {
           </span>
         </div>
         <h2 className="post__title">
-          <Link className="post__title-link" to={slug}>
+          <Link className="post__title-link p-name" to={slug}>
             {title}
           </Link>
         </h2>
-        <p className="post__description">{description}</p>
+        <p className="post__description p-summary e-content">{description}</p>
         <Link className="post__readmore" to={slug}>
           Read
         </Link>
+        <a
+          className="u-url p-name hidden"
+          href="https://www.twitter.com/dolearning"
+        >
+          Kevin Cunningham
+        </a>
       </div>
     )
   }

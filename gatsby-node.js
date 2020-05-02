@@ -132,19 +132,28 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: edge.node.fields.slug,
         component: slash(pageTemplate),
-        context: { slug: edge.node.fields.slug },
+        context: {
+          slug: edge.node.fields.slug,
+          url: `https://www.kevincunningham.co.uk${edge.node.fields.slug}`,
+        },
       })
     } else if (_.get(edge, 'node.frontmatter.layout') === 'weeknotes') {
       createPage({
         path: edge.node.fields.slug,
         component: slash(weekNoteTemplate),
-        context: { slug: edge.node.fields.slug },
+        context: {
+          slug: edge.node.fields.slug,
+          url: `https://www.kevincunningham.co.uk${edge.node.fields.slug}`,
+        },
       })
     } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
       createPage({
         path: edge.node.fields.slug,
         component: slash(postTemplate),
-        context: { slug: edge.node.fields.slug },
+        context: {
+          slug: edge.node.fields.slug,
+          url: `https://www.kevincunningham.co.uk${edge.node.fields.slug}`,
+        },
       })
 
       let tags = []

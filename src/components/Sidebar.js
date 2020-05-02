@@ -39,7 +39,7 @@ const Sidebar = ({ location }) => {
   const authorBlock = (
     <div>
       <Link to="/">
-        <div class="author-card rounded-full" alt="Profile picture" />
+        <div className="author-card rounded-full" alt="Profile picture" />
       </Link>
       {isHomePage ? (
         <h1 className="sidebar__author-title">

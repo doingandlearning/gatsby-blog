@@ -18,7 +18,7 @@ class Links extends React.Component {
             <a
               href={`https://www.twitter.com/${links.twitter}`}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer me"
             >
               <i className="icon-twitter" />
             </a>
@@ -27,14 +27,14 @@ class Links extends React.Component {
             <a
               href={`https://www.github.com/${links.github}`}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer me"
             >
               <i className="icon-github" />
             </a>
           </li>
 
           <li className="links__list-item">
-            <a href={`mailto:${links.email}`}>
+            <a href={`mailto:${links.email}`} rel="me">
               <i className="icon-mail" />
             </a>
           </li>

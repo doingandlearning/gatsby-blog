@@ -16,3 +16,7 @@ Documentation:
 Workshop:
 
 - [Migrate from REST to GraphQL](./migrate_from_rest_to_graphql) with Vladimir Novick
+
+Other Resources:
+
+- [GraphQL - Meetup Data Platforms](https://docs.google.com/presentation/d/11yV-awFyxiMbuVOZxZezPSAg9QvpBHiZPfEB2LH3n8g/edit#slide=id.p) - presentation from [Ed Mooney](https://twitter.com/edmooney)

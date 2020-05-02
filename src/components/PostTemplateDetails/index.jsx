@@ -4,10 +4,13 @@ import moment from 'moment'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import './style.scss'
 import SignUp from '../SignUpForm'
+import WebMentions from '../WebMentions'
+import _ from 'lodash'
 
 const PostTemplateDetails = props => {
   const { subtitle, author } = props.data.site.siteMetadata
   const post = props.data.mdx
+  const webMentions = _.get(props, 'data.allWebMentionEntry', [])
   const tags = post.fields.tagSlugs
 
   const homeBlock = (
@@ -36,9 +39,11 @@ const PostTemplateDetails = props => {
   return (
     <div>
       {homeBlock}
-      <div className="post-single">
+      <div className="post-single h-card">
         <div className="post-single__inner">
-          <h1 className="post-single__title">{post.frontmatter.title}</h1>
+          <h1 className="post-single__title p-name">
+            {post.frontmatter.title}
+          </h1>
           <div className="post-single__body">
             <MDXRenderer>{post.body}</MDXRenderer>
           </div>
@@ -50,7 +55,8 @@ const PostTemplateDetails = props => {
         </div>
         <div className="post-single__footer">
           {tagsBlock}
-          <hr />
+          <WebMentions {...webMentions} />
+          <hr className="my-2" />
           <SignUp />
           <p className="post-single__footer-text text-center">
             {subtitle}
@@ -58,6 +64,7 @@ const PostTemplateDetails = props => {
               href={`https://twitter.com/${author.twitter}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="p-name u-url"
             >
               <br /> <strong>{author.name}</strong> on Twitter
             </a>

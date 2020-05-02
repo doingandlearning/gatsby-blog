@@ -1,8 +1,8 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
+require('dotenv').config()
 
 const url = 'https://www.kevincunningham.co.uk'
-
 module.exports = {
   siteMetadata: {
     url,
@@ -221,5 +221,19 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-twitter`,
     '@aengusm/gatsby-theme-brain',
+    {
+      resolve: `gatsby-plugin-webmention`,
+      options: {
+        username: 'www.kevincunningham.co.uk', // webmention.io username
+        identity: {
+          github: 'doingandlearning',
+          twitter: 'dolearning', // no @
+        },
+        mentions: true,
+        pingbacks: true,
+        domain: 'www.kevincunningham.co.uk',
+        token: process.env.WEBMENTION_API,
+      },
+    },
   ],
 }
