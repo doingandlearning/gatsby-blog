@@ -33,12 +33,9 @@ export default ({ directories, location }) => {
                 {Array(folderNumber)
                   .fill('📂')
                   .map((item, idx) => (
-                    <div
-                      className="no-underline hover:bg-orange hover:color-orange"
-                      key={`folder-${idx}`}
-                    >
+                    <a className="no-underline" key={`folder-${idx}`}>
                       {item}
-                    </div>
+                    </a>
                   ))}
                 {value.map(item => (
                   <a
