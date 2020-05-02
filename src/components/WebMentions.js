@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function WebMentions({ edges }) {
-  console.log(edges)
   const likes = edges.filter(({ node }) => node.wmProperty === 'like-of')
   const likeAuthors = likes.map(
     ({ node }) => node.author && { wmId: node.wmId, ...node.author }

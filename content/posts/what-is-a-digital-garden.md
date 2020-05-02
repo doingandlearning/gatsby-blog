@@ -28,7 +28,7 @@ Richard Feynman, like most intellectuals of the middle ages, was known for keepi
 
 In growing and tending our gardens, we are forced to think about our thoughts - we can look for new seeds and cuttings in articles and books we read, things we watch and see, conversations we have. We can plant these and see if they grow, collocate things that seem to complement each other and see what happens. It might be that some of our garden is evergreen - topics we always are thinking about - whereas others might be more seasonal - thoughts we connect with once or return to season after season. The intentionality of collecting and tending to our garden helps us avoid being swept away by the current of the immediate and think more clearly about reality.
 
-I'm experimenting with a few different ways to tend my garden at the moment. There is a hierarchical version [here](/wiki) and I'm currently down a rabbit hole thinking about emacs as an open source way to gather my thinking. I'm enjoying it but I'm not clear what the public facing version of this might be or even if it needs one.
+I'm experimenting with a few different ways to tend my garden at the moment. There is a hierarchical version [here](/wikinow) and I'm currently down a rabbit hole thinking about emacs as an open source way to gather my thinking. I'm enjoying it but I'm not clear what the public facing version of this might be or even if it needs one.
 
 Some of this thinking will take root, some needs to be transplanted from other sources of my previous gardening and some will only be around for the season. I'm really enjoying this exploration and experimentation.
 
