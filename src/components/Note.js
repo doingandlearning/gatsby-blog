@@ -4,6 +4,8 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from './Layout'
 import { Link } from 'gatsby'
 
+import './PostTemplateDetails/style.scss'
+
 const NotePage = props => {
   const homeBlock = React.useMemo(
     () => (
