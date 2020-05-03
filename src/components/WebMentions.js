@@ -15,9 +15,9 @@ export default function WebMentions({ edges }) {
       node.wmProperty === 'in-reply-to' || node.wmProperty === 'mention-of'
   )
 
-  const AuthorCard = ({ author }) => {
+  const AuthorCard = ({ author, className }) => {
     return (
-      <a href={author.url} key={author.url}>
+      <a href={author.url} key={author.url} className={className}>
         <img
           alt={author.name}
           src={author.photo}
@@ -57,9 +57,12 @@ export default function WebMentions({ edges }) {
             {replies.map(({ node }) => {
               return (
                 <div className="grid grid-cols-12 m-3" key={node.wmId}>
-                  <AuthorCard author={node.author} className="col-span-3" />
+                  <AuthorCard
+                    author={node.author}
+                    className="col-span-2 text-center"
+                  />
                   <a
-                    className="col-span-9 text-black cursor-pointer"
+                    className="col-span-7 text-black cursor-pointer"
                     href={node.wmSource}
                   >
                     {node.content.text}
