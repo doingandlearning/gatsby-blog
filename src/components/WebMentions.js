@@ -65,7 +65,7 @@ export default function WebMentions({ edges }) {
                     className="col-span-7 text-black cursor-pointer"
                     href={node.wmSource}
                   >
-                    {node.content.text}
+                    {node.content ? node.content.text : 'No text.'}
                   </a>
                 </div>
               )
