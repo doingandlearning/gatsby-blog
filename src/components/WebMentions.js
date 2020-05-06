@@ -12,7 +12,12 @@ export default function WebMentions({ edges }) {
 
   const replies = edges.filter(
     ({ node }) =>
-      node.wmProperty === 'in-reply-to' || node.wmProperty === 'mention-of'
+      node.wmProperty === 'in-reply-to' ||
+      (node.wmProperty === 'mention-of' && node.author.name !== '')
+  )
+
+  const mentions = edges.filter(
+    ({ node }) => node.wmProperty === 'mention-of' && node.author.name === ''
   )
 
   const AuthorCard = ({ author, className }) => {
@@ -21,7 +26,6 @@ export default function WebMentions({ edges }) {
         <img
           alt={author.name}
           src={author.photo}
-          key={author.wmId}
           className="rounded-full w-12 h-12"
         />
       </a>
@@ -52,7 +56,7 @@ export default function WebMentions({ edges }) {
       <hr className="my-2" />
       <div>
         <h3>The conversation continues ...</h3>
-        {replies.length > 0 ? (
+        {replies.length > 0 || mentions.length > 0 ? (
           <>
             {replies.map(({ node }) => {
               return (
@@ -66,6 +70,28 @@ export default function WebMentions({ edges }) {
                     href={node.wmSource}
                   >
                     {node.content ? node.content.text : 'No text.'}
+                  </a>
+                </div>
+              )
+            })}
+            {mentions.map(({ node }) => {
+              const author = {
+                name: '',
+                url: node.wmSource,
+                photo: 'https://via.placeholder.com/200',
+              }
+              return (
+                <div className="grid grid-cols-12 m-3" key={node.wmId}>
+                  <AuthorCard
+                    author={author}
+                    className="col-span-2 text-center"
+                  />
+
+                  <a
+                    className="col-span-7 text-black cursor-pointer"
+                    href={node.wmSource}
+                  >
+                    Mentioned on {node.wmSource}
                   </a>
                 </div>
               )
