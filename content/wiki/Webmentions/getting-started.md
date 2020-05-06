@@ -1,68 +1,83 @@
+# Adding Webmentions to Gatsby - Livestream
+
+- Hey! 🙌
+- Register link: https://egghead.zoom.us/webinar/register/WN_HQOzonuFS3GTMX0r5IjrCQ
+
+> Welcome! These are some notes that were started before the stream. Everyone is invited to contribute, add, subtract - I'll add them to a permanent home after the stream and tweet where it is.
+>
+> If you do contribute - add your name to the list below!
+>
+> Thanks for collaborating with us - **Kevin**.
+
+**If you're on the Zoom call and in chat - make sure you have the All panelists and attendees selected.**
+
+## Github
+
+[Lauro's repo (that we were working on in the stream)](https://github.com/laurosilvacom/laurosilva.com)
+
+[Kevin's site - I started this yesterday](https://www.kevincunningham.co.uk/posts/what-is-a-digital-garden/)
+
+## Contributors:
+
+- Kevin (@dolearning)
+- Lauro (@laurosilvacom)
+-
+
 # Table of Contents
 
-1.  [Helpful links:](#org91c942b)
-2.  [Things that we need to do to implement this:](#org295a8e9)
-    1.  [How to get validated/authenticated on webmention.io](#org1499d2d)
-        1.  [You can use any social link on your profile (Twitter/Github/Email)](#orgf5e0aac)
-        2.  [Add the property rel with the value me to the link, on my blog this looked like](#org25f2db1)
-        3.  [Return to webmention.io, enter your url and it will redirect you to one of the auth providers. Authenticate on that provider and webmention will check if the url on that account matches the url you sent it to.](#org8aadea2)
-    2.  [Microformats2 - how to mark the html to extract the json correctly](#orgd2a5a8f)
-        1.  [I had an issue that all of my Twitter and site generally use https://kevincunningham.co.uk whereas webmention.io was expecting it to be https://www.kevincunningham.co.uk - the following code is suggested:](#orgfe18b22)
-    3.  [Adding the webmention plugin](#org15c6da2)
-    4.  [Getting page level webmentions](#orgdc8aa8e)
-    5.  [Linking Twitter to the blog](#org7bcf8d6)
-    6.  [Implementing the front end](#org92c0e43)
-    7.  [Triggering a new build on a new mention](#orgc9b42d0)
+- [Helpful links:](#orgdbece40)
 
-<a id="org91c942b"></a>
+- [How to get validated/authenticated on webmention.io](#orgebbe092)
+- [You can use any social link on your profile (Twitter/Github/Email)](#org60b0734)
+- [Add the property rel with the value me to the link, on my blog this looked like](#org1a1b3a5)
+- [Return to webmention.io, enter your url and it will redirect you to one of the auth providers. Authenticate on that provider and webmention will check if the url on that account matches the url you sent it to.](#org552cde3)
+- [Microformats2 - how to mark the html to extract the json correctly](#org3529c47)
+- [I had an issue that all of my Twitter and site generally use https://kevincunningham.co.uk whereas webmention.io was expecting it to be https://www.kevincunningham.co.uk - the following code is suggested:](#org10756bf)
+- [Adding the webmention plugin](#org3798dc9)
+- [Getting page level webmentions](#org0553482)
+- [Linking Twitter to the blog](#org61a685f)
+- [Implementing the front end](#orge082771)
+- [Triggering a new build on a new mention](#org760403d)
+
+<a id="orgdbece40"></a>
 
 # Helpful links:
 
 [Getting started with Webmentions in Gatsby | Knut Melvær](https://www.knutmelvaer.no/blog/2019/06/getting-started-with-webmentions-in-gatsby/)
-
 [GitHub - ChristopherBiscardi/gatsby-plugin-webmention: https://webmention.io/&#x2026;](https://github.com/ChristopherBiscardi/gatsby-plugin-webmention)
-
-<https://indieweb.org/gatsby>
-
+[IndieWeb gatsby page](https://indieweb.org/gatsby)
 [Chris Biscardi&#x27;s Digital Garden](https://www.christopherbiscardi.com/post/building-gatsby-plugin-webmentions)
-
-<https://brid.gy>
-
+[Brid.gy - connect twitter to webmentions](https://brid.gy)
 [Webmention.io](https://webmention.io/)
+[webmentions-research](https://www.kevincunningham.co.uk/wiki/Webmentions/webmentions-research)
+[hawksworx.com](hawksworx.com)
+[Knut's tutorial](https://www.knutmelvaer.no/blog/2019/06/getting-started-with-webmentions-in-gatsby/)
 
-[Clientside Webmentions: Joining the IndieWeb with Svelte](https://www.swyx.io/writing/clientside-webmentions/)
-
-<a id="org295a8e9"></a>
-
-# Things that we need to do to implement this:
-
-- What are Webmentions?
-
-<a id="org1499d2d"></a>
+<a id="orgebbe092"></a>
 
 ## How to get validated/authenticated on webmention.io
 
-<a id="orgf5e0aac"></a>
+<a id="org60b0734"></a>
 
 ### You can use any social link on your profile (Twitter/Github/Email)
 
-<a id="org25f2db1"></a>
+<a id="org1a1b3a5"></a>
 
 ### Add the property rel with the value me to the link, on my blog this looked like
 
     <a
-                  href={`https://www.twitter.com/${links.twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer me"
-                >
-                  <i className="icon-twitter" />
-                </a>
+      href={`https://www.twitter.com/${links.twitter}`}
+      target="_blank"
+      rel="noopener noreferrer me"
+    >
+      <i className="icon-twitter" />
+    </a>
 
-<a id="org8aadea2"></a>
+<a id="org552cde3"></a>
 
 ### Return to webmention.io, enter your url and it will redirect you to one of the auth providers. Authenticate on that provider and webmention will check if the url on that account matches the url you sent it to.
 
-<a id="orgd2a5a8f"></a>
+<a id="org3529c47"></a>
 
 ## Microformats2 - how to mark the html to extract the json correctly
 
@@ -70,7 +85,7 @@
   - To validate markup:
 
 <https://indiewebify.me/>
-[PHP Microformats Parser](https://pin13.net/mf2/)
+[PHP Microformats Parser](https://pin13.net/mf2/) - this one worked better for me (@dolearning)
 
     <article class="h-card">
       <header>
@@ -118,7 +133,7 @@ extracts data of this form:
       "rel-urls": {}
     }
 
-<a id="orgfe18b22"></a>
+<a id="org10756bf"></a>
 
 ### I had an issue that all of my Twitter and site generally use <https://kevincunningham.co.uk> whereas webmention.io was expecting it to be <https://www.kevincunningham.co.uk> - the following code is suggested:
 
@@ -127,7 +142,7 @@ extracts data of this form:
 
 However, Gatsby doesn&rsquo;t allow the link element, instead I used an a tag and applied `display:none`
 
-<a id="org15c6da2"></a>
+<a id="org3798dc9"></a>
 
 ## Adding the webmention plugin
 
@@ -153,7 +168,7 @@ However, Gatsby doesn&rsquo;t allow the link element, instead I used an a tag an
     - Webmentions token is found here:[Webmention.io](https://webmention.io/settings)
       - need to make sure this is added as an environment variable
 
-<a id="orgdc8aa8e"></a>
+<a id="org0553482"></a>
 
 ## Getting page level webmentions
 
@@ -206,13 +221,13 @@ However, Gatsby doesn&rsquo;t allow the link element, instead I used an a tag an
         }
       }
 
-<a id="org7bcf8d6"></a>
+<a id="org61a685f"></a>
 
 ## Linking Twitter to the blog
 
 - Simplest way to get webmentions is with brid.gy
 
-<a id="org92c0e43"></a>
+<a id="orge082771"></a>
 
 ## Implementing the front end
 
@@ -296,8 +311,16 @@ This is my frontend implementation adapted from Knut&rsquo;s tutorial:
       )
     }
 
-<a id="orgc9b42d0"></a>
+<a id="org760403d"></a>
 
-## Triggering a new build on a new mention
+## Triggering a new build:
+
+### On every mention:
 
 - I&rsquo;m with Vercel and I had to set this up through a Git hook - got the hook from the Vercel dashboard and passed it to Webmention.io.
+
+### On a schedule (once/twice per day)
+
+### Doing it all client-side
+
+- Is there a time penalty for client loading?

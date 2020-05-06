@@ -148,23 +148,24 @@ module.exports = {
                 })
               ),
             query: `
-              {
-                allMdx(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      body
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                      }
+            {
+              allMdx(sort: {order: DESC, fields: [frontmatter___date]}, filter: {frontmatter: { date: {ne: null}}}) {
+                edges {
+                  node {
+                    excerpt
+                    body
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
                     }
                   }
                 }
               }
+            }
+            
             `,
             output: '/rss.xml',
             title: "Kevin Cunningham's RSS Feed",

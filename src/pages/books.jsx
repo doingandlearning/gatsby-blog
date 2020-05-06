@@ -9,7 +9,7 @@ import Book from '../components/Book'
 function BookPage(props) {
   const items = []
   const books = props.data.allMdx.edges
-  books.forEach((book) => {
+  books.forEach(book => {
     items.push(<Book data={book} key={book.id} />)
   })
   return (
@@ -19,7 +19,7 @@ function BookPage(props) {
         <meta name="description" content="Some book reviews" />
       </Helmet>
       <Sidebar {...props} />
-      <div className="content">
+      <div className="content w-1/2">
         <div className="content__inner">{items}</div>
       </div>
     </Layout>
