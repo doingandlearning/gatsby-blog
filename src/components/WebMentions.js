@@ -20,14 +20,24 @@ export default function WebMentions({ edges }) {
     ({ node }) => node.wmProperty === 'mention-of' && node.author.name === ''
   )
 
-  const AuthorCard = ({ author, className }) => {
+  // const AuthorCard = ({ author, className }) => {
+  //   return (
+  //     <a href={author.url} key={author.url} className={className}>
+  //       <img
+  //         alt={author.name}
+  //         src={author.photo}
+  //         className="rounded-full w-12 h-12"
+  //       />
+  //     </a>
+  //   )
+  // }
+  const AuthorCard = ({ author, className, size }) => {
     return (
-      <a href={author.url} key={author.url} className={className}>
-        <img
-          alt={author.name}
-          src={author.photo}
-          className="rounded-full w-12 h-12"
-        />
+      <a href={author.url}>
+        <div
+          className={`bg-cover bg-center w-${size} h-${size} rounded-full border-4 border-white -mr-3 ${className}`}
+          style={{ backgroundImage: `url(${author.photo})` }}
+        ></div>
       </a>
     )
   }
@@ -41,17 +51,19 @@ export default function WebMentions({ edges }) {
           <p>{`${likes.length + reposts.length} likes and reposts`}</p>
         )}
       </h4>
-      <div className="flex flex-wrap">
-        {likeAuthors.map(author => (
-          <div className="px-2">
-            <AuthorCard author={author} />
-          </div>
-        ))}
-        {repostAuthors.map(author => (
-          <div className="px-2">
-            <AuthorCard author={author} />
-          </div>
-        ))}
+      <div className="flex justify-between items-center mt-3">
+        <div className="flex flex-row-reverse justify-end">
+          {likeAuthors.map(author => (
+            <div className="">
+              <AuthorCard author={author} size="12" />
+            </div>
+          ))}
+          {repostAuthors.map(author => (
+            <div className="">
+              <AuthorCard author={author} size="12" />
+            </div>
+          ))}
+        </div>
       </div>
       <hr className="my-2" />
       <div>
@@ -61,10 +73,9 @@ export default function WebMentions({ edges }) {
             {replies.map(({ node }) => {
               return (
                 <div className="grid grid-cols-12 m-3" key={node.wmId}>
-                  <AuthorCard
-                    author={node.author}
-                    className="col-span-2 text-center"
-                  />
+                  <div className="col-span-2 text-center inline-block">
+                    <AuthorCard author={node.author} size="16" />
+                  </div>
                   <a
                     className="col-span-7 text-black cursor-pointer"
                     href={node.wmSource}
@@ -82,17 +93,14 @@ export default function WebMentions({ edges }) {
               }
               return (
                 <div className="grid grid-cols-12 m-3" key={node.wmId}>
-                  <AuthorCard
-                    author={author}
-                    className="col-span-2 text-center"
-                  />
-
-                  <a
-                    className="col-span-7 text-black cursor-pointer"
-                    href={node.wmSource}
-                  >
-                    Mentioned on {node.wmSource}
-                  </a>
+                  <div className="col-span-2 text-center inline-block">
+                    <AuthorCard author={author} size="14" />
+                  </div>
+                  <div className="col-span-7 text-black cursor-pointer">
+                    <a className="" href={node.wmSource}>
+                      Mentioned on {node.wmSource}
+                    </a>
+                  </div>
                 </div>
               )
             })}
