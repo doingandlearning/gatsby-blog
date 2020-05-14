@@ -61,7 +61,7 @@ With JWT, you need to:
 
 - [ ] <http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/>
 - React App is a fundamentally insecure environment.
-- <header><payload><signature>
+- `<header><payload><signature>` - the three sections of a JWT.
 
 <a id="orgd659ac6"></a>
 
