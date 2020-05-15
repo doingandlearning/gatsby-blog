@@ -118,7 +118,6 @@ function IndexPage(props) {
           <title>{title}</title>
           <meta name="description" content={subtitle} />
         </Helmet>
-        <Sidebar {...props} />
         <div className="content">
           <div className="content__inner">
             <h1 className="text-5xl pt-10">Hi, I'm Kevin Cunningham. 👋🏻</h1>

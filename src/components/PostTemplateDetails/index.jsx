@@ -2,12 +2,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import moment from 'moment'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import './style.scss'
 import SignUp from '../SignUpForm'
 import WebMentions from '../WebMentions'
 import _ from 'lodash'
 
-const PostTemplateDetails = props => {
+const PostTemplateDetails = (props) => {
   const { subtitle, author } = props.data.site.siteMetadata
   const post = props.data.mdx
   const webMentions = _.get(props, 'data.allWebMentionEntry', [])

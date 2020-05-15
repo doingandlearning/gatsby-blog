@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import '../../assets/scss/init.scss'
-import '../../assets/styles.css'
+import Header from './Header'
 
 class Layout extends React.Component {
   render() {
@@ -10,6 +9,7 @@ class Layout extends React.Component {
     return (
       <div className="layout">
         <Helmet />
+        <Header />
         {children}
         <a
           rel="webmention"

@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-import './style.scss'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 function Book({ data }) {

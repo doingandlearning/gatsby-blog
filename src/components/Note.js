@@ -4,17 +4,10 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from './Layout'
 import { Link } from 'gatsby'
 
-import './PostTemplateDetails/style.scss'
-
-const NotePage = props => {
+const NotePage = (props) => {
   const homeBlock = React.useMemo(
     () => (
-      <Link
-        to={props.location.pathname
-          .split('/')
-          .slice(0, -1)
-          .join('/')}
-      >
+      <Link to={props.location.pathname.split('/').slice(0, -1).join('/')}>
         <button className="post-single__home-button">Back</button>
       </Link>
     ),
