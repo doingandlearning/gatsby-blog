@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-import './style.scss'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 function Book({ data }) {
@@ -11,13 +10,14 @@ function Book({ data }) {
     publication_date,
     genre,
     category,
+    coverImage,
     date,
     tags,
   } = data.node.frontmatter
 
   const tagsBlock = (
-    <div className="post-single__tags">
-      <ul className="post-single__tags-list">
+    <div className="">
+      <ul className="">
         {tags &&
           tags.map((tag, i) => (
             <li className="post-single__tags-list-item" key={tag}>
@@ -33,23 +33,24 @@ function Book({ data }) {
   )
 
   const StarRating = ({ totalStars, select }) => (
-    <div className="star-rating">
+    <div className="flex">
       {[...Array(totalStars)].map((n, i) => (
         <Star key={i} selected={i < select} />
       ))}
     </div>
   )
+  console.log(coverImage)
 
   return (
-    <div className="book">
-      <div className="cover">
+    <div className="border rounded my-2 p-3">
+      <div className="">
         <h2 className="title">
           {title} - <em>{author}</em>
         </h2>
         {/* <Img fluid={coverImage.childImageSharp.fluid} /> */}
       </div>
       <div className="details">
-        <div className="rating">
+        <div className="flex">
           <StarRating totalStars={5} select={rating} />
         </div>
         <div className="details pt-4">

@@ -1,18 +1,17 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import './style.scss'
 
 class Menu extends React.Component {
   render() {
     const menu = this.props.data
 
     const menuBlock = (
-      <ul className="menu__list">
-        {menu.map(item => (
-          <li className="menu__list-item" key={item.path}>
+      <ul className="flex flex-row justify-center">
+        {menu.map((item) => (
+          <li className="mx-2" key={item.path}>
             <Link
               to={item.path}
-              className="text-black"
+              className="text-black hover:text-orange"
               activeClassName=" text-orange"
             >
               {item.label}

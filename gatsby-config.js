@@ -1,5 +1,7 @@
-const lost = require('lost')
-const pxtorem = require('postcss-pxtorem')
+const resolveConfig = require('tailwindcss/resolveConfig')
+const tailwindConfig = require('./tailwind.config.js')
+
+const fullConfig = resolveConfig(tailwindConfig)
 require('dotenv').config()
 
 const url = 'https://www.kevincunningham.co.uk'
@@ -100,7 +102,7 @@ module.exports = {
               urlOverrides: [
                 {
                   id: 'youtube',
-                  embedURL: videoId =>
+                  embedURL: (videoId) =>
                     `https://www.youtube-nocookie.com/embed/${videoId}`,
                 },
               ], // Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
@@ -138,7 +140,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) =>
-              allMdx.edges.map(edge =>
+              allMdx.edges.map((edge) =>
                 Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
@@ -183,45 +185,8 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-sass',
-      options: {
-        postCssPlugins: [
-          lost(),
-          pxtorem({
-            rootValue: 16,
-            unitPrecision: 5,
-            propList: [
-              'font',
-              'font-size',
-              'line-height',
-              'letter-spacing',
-              'margin',
-              'margin-top',
-              'margin-left',
-              'margin-bottom',
-              'margin-right',
-              'padding',
-              'padding-top',
-              'padding-left',
-              'padding-bottom',
-              'padding-right',
-              'border-radius',
-              'width',
-              'max-width',
-            ],
-            selectorBlackList: [],
-            replace: true,
-            mediaQuery: false,
-            minPixelValue: 0,
-          }),
-        ],
-        precision: 8,
-      },
-    },
-    `gatsby-plugin-postcss`,
+
     `gatsby-plugin-twitter`,
-    '@aengusm/gatsby-theme-brain',
     {
       resolve: `gatsby-plugin-webmention`,
       options: {
@@ -234,6 +199,18 @@ module.exports = {
         pingbacks: true,
         domain: 'www.kevincunningham.co.uk',
         token: process.env.WEBMENTION_API,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`tailwindcss`)(tailwindConfig),
+          require(`autoprefixer`),
+          ...(process.env.NODE_ENV === `production`
+            ? [require(`cssnano`)]
+            : []),
+        ],
       },
     },
   ],

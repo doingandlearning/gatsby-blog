@@ -11,14 +11,10 @@ class CategoryTemplateDetails extends React.Component {
     })
 
     return (
-      <div className="content">
-        <div className="content__inner">
           <div className="page">
-            <h1 className="page__title">{category}</h1>
+            <h1 className="text-3xl my-3">{category}</h1>
             <div className="page__body">{items}</div>
           </div>
-        </div>
-      </div>
     )
   }
 }
