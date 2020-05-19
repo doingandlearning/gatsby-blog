@@ -13,26 +13,26 @@ const PostTemplateDetails = (props) => {
   const tags = post.fields.tagSlugs
 
   const homeBlock = (
-    <div>
+    <button>
       <Link className="post-single__home-button" to="/blog">
         All Posts
       </Link>
-    </div>
+    </button>
   )
 
   const tagsBlock = (
-    <div className="post-single__tags">
-      <ul className="post-single__tags-list">
-        {tags &&
-          tags.map((tag, i) => (
-            <li className="post-single__tags-list-item" key={tag}>
+    <ul className="flex">
+      {tags &&
+        tags.map((tag, i) => (
+          <li className="post-single__tags-list-item" key={tag}>
+            <button>
               <Link to={tag} className="post-single__tags-list-item-link">
                 {post.frontmatter.tags[i]}
               </Link>
-            </li>
-          ))}
-      </ul>
-    </div>
+            </button>
+          </li>
+        ))}
+    </ul>
   )
 
   return (

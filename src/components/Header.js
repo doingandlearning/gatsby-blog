@@ -3,18 +3,17 @@ import React, { useState } from 'react'
 import Menu from './Menu'
 import Links from './Links'
 import profilePic from '../pages/photo.jpg'
+import brainPic from '../pages/brain.jpg'
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false)
+  const [entered, setEntered] = useState(false)
 
   const { site } = useStaticQuery(
     graphql`
       {
         site {
           siteMetadata {
-            title
-            subtitle
-            copyright
             menu {
               label
               path
@@ -30,24 +29,31 @@ function Header() {
       }
     `
   )
-  const { author, subtitle, copyright, menu } = site.siteMetadata
+
+  const { author, menu } = site.siteMetadata
+
   return (
-    <header className="bg-teal-700">
+    <header className="font-sans border-b ">
       <div className="flex flex-wrap items-center justify-between max-w-4xl p-4 mx-auto md:p-8">
         <Link to="/">
           <h1 className="flex items-center text-white no-underline">
             <img
               className="inline-block w-16 h-16 rounded-full mx-2"
-              src={profilePic}
+              src={entered ? brainPic : profilePic}
+              onMouseEnter={() => setEntered(true)}
+              onMouseLeave={() => setEntered(false)}
             />
-            <span className="text-xl font-bold tracking-tight">
-              {site.siteMetadata.title}
-            </span>
+            <div className="inline-block hidden sm:inline">
+              <span className="text-2xl pl-4 text-orange font-sans tracking-tight ">
+                doing and learning
+              </span>
+              <Links author={author} />
+            </div>
           </h1>
         </Link>
 
         <button
-          className="flex items-center block px-3 py-2 text-white border border-white rounded md:hidden"
+          className="flex items-center block px-3 py-2 text-black border border-black rounded md:hidden"
           onClick={() => toggleExpansion(!isExpanded)}
         >
           <svg
@@ -67,7 +73,6 @@ function Header() {
         >
           <div className="flex flex-col justify-center">
             <Menu data={menu} />
-            <Links author={author} />
           </div>
         </nav>
       </div>

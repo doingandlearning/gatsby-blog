@@ -3,3 +3,37 @@
 @tailwind components;
 /*! purgecss end ignore */
 @tailwind utilities;
+
+a {
+  @apply text-orange;
+}
+a:hover {
+  @apply text-black;
+}
+
+p {
+  @apply pb-4;
+}
+
+h1 {
+  @apply text-2xl;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+
+ol {
+  @apply list-disc;
+}
+
+button {
+  @apply m-3;
+  @apply border;
+  @apply rounded;
+  @apply bg-gray-200;
+  @apply px-4;
+  @apply py-2;
+}

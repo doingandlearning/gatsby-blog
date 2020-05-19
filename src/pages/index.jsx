@@ -120,7 +120,9 @@ function IndexPage(props) {
         </Helmet>
         <div className="content">
           <div className="content__inner">
-            <h1 className="text-5xl pt-10">Hi, I'm Kevin Cunningham. 👋🏻</h1>
+            <h1 className="sm:text-4xl text-3xl pt-10">
+              Hi, I'm Kevin Cunningham. 👋🏻
+            </h1>
             <p className="text-xl py-3">
               Welcome to my little corner of the internet.
             </p>

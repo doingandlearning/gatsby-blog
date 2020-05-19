@@ -63,7 +63,8 @@
     "react-feather": "^2.0.8",
     "react-helmet": "^5.2.0",
     "react-social-icons": "^4.1.0",
-    "recharts": "^1.8.5"
+    "recharts": "^1.8.5",
+    "typeface-ibm-plex-sans": "0.0.75"
   },
   "devDependencies": {
     "eslint-plugin-jsx-a11y": "^6.0.3",
