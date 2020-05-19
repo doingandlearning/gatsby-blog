@@ -10,7 +10,7 @@ function Links({ author }) {
 
   return (
     <ul className="flex align-items-center justify-center">
-      <li className="align-self-center m-2 m-2">
+      <li className="align-self-center m-1">
         <a
           href={`https://www.twitter.com/${links.twitter}`}
           target="_blank"

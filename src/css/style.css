@@ -37,3 +37,25 @@ button {
   @apply px-4;
   @apply py-2;
 }
+
+.star {
+  width: 1.5em;
+  height: 1.5em;
+  background: grey;
+  clip-path: polygon(
+    50% 0,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0 38%,
+    37% 38%
+  );
+}
+
+.selected {
+  background: red;
+}
