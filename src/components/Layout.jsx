@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import '../../assets/scss/init.scss'
-import '../../assets/styles.css'
+import Header from './Header'
+import 'typeface-ibm-plex-sans'
 
 class Layout extends React.Component {
   render() {
@@ -10,6 +10,7 @@ class Layout extends React.Component {
     return (
       <div className="layout">
         <Helmet>
+          {' '}
           <script
             async
             defer
@@ -17,7 +18,10 @@ class Layout extends React.Component {
             src="https://plausible.io/js/plausible.js"
           ></script>
         </Helmet>
-        {children}
+        <Header />
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-3xl mx-auto font-sans">{children}</div>
+        </div>
         <a
           rel="webmention"
           href="https://webmention.io/www.kevincunningham.co.uk/webmention"

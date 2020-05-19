@@ -18,9 +18,8 @@ function BookPage(props) {
         <title>Books</title>
         <meta name="description" content="Some book reviews" />
       </Helmet>
-      <Sidebar {...props} />
-      <div className="content w-1/2">
-        <div className="content__inner">{items}</div>
+      <div className="my-3">
+        <div className="">{items}</div>
       </div>
     </Layout>
   )
@@ -65,6 +64,7 @@ export const pageQuery = graphql`
             category
             date
             tags
+   
           }
         }
       }

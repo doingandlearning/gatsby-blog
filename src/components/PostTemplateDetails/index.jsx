@@ -2,38 +2,37 @@ import React from 'react'
 import { Link } from 'gatsby'
 import moment from 'moment'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import './style.scss'
 import SignUp from '../SignUpForm'
 import WebMentions from '../WebMentions'
 import _ from 'lodash'
 
-const PostTemplateDetails = props => {
+const PostTemplateDetails = (props) => {
   const { subtitle, author } = props.data.site.siteMetadata
   const post = props.data.mdx
   const webMentions = _.get(props, 'data.allWebMentionEntry', [])
   const tags = post.fields.tagSlugs
 
   const homeBlock = (
-    <div>
+    <button>
       <Link className="post-single__home-button" to="/blog">
         All Posts
       </Link>
-    </div>
+    </button>
   )
 
   const tagsBlock = (
-    <div className="post-single__tags">
-      <ul className="post-single__tags-list">
-        {tags &&
-          tags.map((tag, i) => (
-            <li className="post-single__tags-list-item" key={tag}>
+    <ul className="flex">
+      {tags &&
+        tags.map((tag, i) => (
+          <li className="post-single__tags-list-item" key={tag}>
+            <button>
               <Link to={tag} className="post-single__tags-list-item-link">
                 {post.frontmatter.tags[i]}
               </Link>
-            </li>
-          ))}
-      </ul>
-    </div>
+            </button>
+          </li>
+        ))}
+    </ul>
   )
 
   return (
