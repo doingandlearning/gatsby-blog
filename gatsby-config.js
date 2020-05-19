@@ -221,7 +221,6 @@ module.exports = {
     },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-twitter`,
-    '@aengusm/gatsby-theme-brain',
     {
       resolve: `gatsby-plugin-webmention`,
       options: {

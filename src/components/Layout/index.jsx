@@ -9,7 +9,14 @@ class Layout extends React.Component {
 
     return (
       <div className="layout">
-        <Helmet />
+        <Helmet>
+          <script
+            async
+            defer
+            data-domain="kevincunningham.co.uk"
+            src="https://plausible.io/js/plausible.js"
+          ></script>
+        </Helmet>
         {children}
         <a
           rel="webmention"
