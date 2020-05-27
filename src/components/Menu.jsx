@@ -6,7 +6,7 @@ class Menu extends React.Component {
     const menu = this.props.data
 
     const menuBlock = (
-      <ul className="flex flex-row justify-center">
+      <ul className="flex flex-row justify-center list-none">
         {menu.map((item) => (
           <li className="mx-2" key={item.path}>
             <Link

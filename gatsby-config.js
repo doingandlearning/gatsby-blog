@@ -187,6 +187,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
 
     `gatsby-plugin-twitter`,
+    '@aengusm/gatsby-theme-brain',
     {
       resolve: `gatsby-plugin-webmention`,
       options: {

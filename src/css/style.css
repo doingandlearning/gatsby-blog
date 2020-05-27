@@ -25,6 +25,10 @@ h3 {
   @apply text-lg;
 }
 
+ul {
+  @apply list-disc;
+}
+
 ol {
   @apply list-disc;
 }
