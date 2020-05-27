@@ -50,9 +50,6 @@ function Book({ data }) {
         {/* <Img fluid={coverImage.childImageSharp.fluid} /> */}
       </div>
       <div className="details">
-        <div className="flex">
-          <StarRating totalStars={5} select={rating} />
-        </div>
         <div className="details pt-4">
           <MDXRenderer>{data.node.body}</MDXRenderer>
         </div>
