@@ -17,10 +17,10 @@ function Book({ data }) {
 
   const tagsBlock = (
     <div className="">
-      <ul className="">
+      <ul className="list-none flex justify-center flex-wrap">
         {tags &&
           tags.map((tag, i) => (
-            <li className="post-single__tags-list-item" key={tag}>
+            <li className="p-2 bg-orange text-white rounded mx-2" key={tag}>
               <div className="tag">{data.node.frontmatter.tags[i]}</div>
             </li>
           ))}
@@ -45,7 +45,7 @@ function Book({ data }) {
     <div className="border rounded my-2 p-3">
       <div className="">
         <h2 className="title">
-          {title} - <em>{author}</em>
+          {title} - <em>{author}</em> ({publication_date})
         </h2>
         {/* <Img fluid={coverImage.childImageSharp.fluid} /> */}
       </div>
