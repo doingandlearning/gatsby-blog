@@ -21,7 +21,7 @@ class Post extends React.Component {
           >
             {moment(date).format('MMMM YYYY')}
           </time>
-         
+
           <span className="uppercase" key={categorySlug}>
             <Link to={categorySlug} className="">
               {category}
@@ -29,12 +29,12 @@ class Post extends React.Component {
           </span>
         </div>
         <h2 className="text-2xl ">
-          <Link className="p-name text-black hover:text-orange" to={slug}>
+          <Link className="p-name text-black hover:text-orange mb-12" to={slug}>
             {title}
           </Link>
         </h2>
         <p className="p-summary e-content">{description}</p>
-     
+
         <a
           className="u-url p-name hidden"
           href="https://www.twitter.com/dolearning"

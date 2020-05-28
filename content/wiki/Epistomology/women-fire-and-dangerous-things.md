@@ -14,7 +14,7 @@ The traditional view says that thought is abstract and objective - it exists ind
 
 We group things into categories - the objectivist (traditional) will group if, and only if, things have certain properties in common.
 
-Conceptual categories are very different. Thought is embodied, imaginative (particular for those concepts which are not grounded in experience), thought has gestalt properties (this supports thinking in more connected ways). This is a much more organic and evolutionary way of considering thought and thinking - less certain, more room for interpretation, each embodied understanding will be different.
+Conceptual categories are very different. Thought is embodipried, imaginative (particular for those concepts which are not grounded in experience), thought has gestalt properties (this supports thinking in more connected ways). This is a much more organic and evolutionary way of considering thought and thinking - less certain, more room for interpretation, each embodied understanding will be different.
 
 The new view is being referred to as experientialism. This is based on a commitment that the real world exists, that reality places constraints on concepts, that truth is more than formal logic.
 

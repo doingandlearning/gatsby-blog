@@ -9,15 +9,7 @@ class Layout extends React.Component {
 
     return (
       <div className="layout">
-        <Helmet>
-          {' '}
-          <script
-            async
-            defer
-            data-domain="kevincunningham.co.uk"
-            src="https://plausible.io/js/plausible.js"
-          ></script>
-        </Helmet>
+        <Helmet> </Helmet>
         <Header />
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="max-w-3xl mx-auto font-sans">{children}</div>
@@ -32,6 +24,12 @@ class Layout extends React.Component {
           href="https://webmention.io/www.kevincunningham.co.uk/xmlrpc"
           className="hidden"
         />
+        <script
+          async
+          defer
+          data-domain="kevincunningham.co.uk"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
       </div>
     )
   }

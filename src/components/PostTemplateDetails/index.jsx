@@ -21,10 +21,10 @@ const PostTemplateDetails = (props) => {
   )
 
   const tagsBlock = (
-    <ul className="flex">
+    <ul className="flex justify-center my-4">
       {tags &&
         tags.map((tag, i) => (
-          <li className="post-single__tags-list-item" key={tag}>
+          <li className="list-none " key={tag}>
             <button>
               <Link to={tag} className="post-single__tags-list-item-link">
                 {post.frontmatter.tags[i]}
@@ -40,13 +40,11 @@ const PostTemplateDetails = (props) => {
       {homeBlock}
       <div className="post-single h-card">
         <div className="post-single__inner">
-          <h1 className="post-single__title p-name">
-            {post.frontmatter.title}
-          </h1>
+          <h1 className="text-3xl pb-4 p-name">{post.frontmatter.title}</h1>
           <div className="post-single__body">
             <MDXRenderer>{post.body}</MDXRenderer>
           </div>
-          <div className="post-single__date">
+          <div className="text-center my-5">
             <em>
               Published {moment(post.frontmatter.date).format('D MMM YYYY')}
             </em>
