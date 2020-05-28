@@ -21,6 +21,7 @@ class PostTemplate extends React.Component {
             <title>{`${postTitle} - ${title}`}</title>
             <meta name="description" content={description} />
             <meta charset="utf-8" />
+            <meta property="og:type" content="website" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:site" content="@dolearning" />
             <meta name="twitter:creator" content="@dolearning" />
