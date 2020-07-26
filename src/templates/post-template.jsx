@@ -12,7 +12,10 @@ class PostTemplate extends React.Component {
     const description = postDescription !== null ? postDescription : subtitle
     const tags = post.fields.tagSlugs
 
-    const openGraphImage = `https://hungry-brattain-538c0b.netlify.app/opengraph?title=${post.frontmatter.title}`
+    const openGraphImage = `https://hungry-brattain-538c0b.netlify.app/opengraph?title=${post.frontmatter.title.replace(
+      /\?/g,
+      ''
+    )}`
 
     return (
       <Layout>
