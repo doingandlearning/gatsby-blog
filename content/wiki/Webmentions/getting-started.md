@@ -173,7 +173,7 @@ However, Gatsby doesn&rsquo;t allow the link element, instead I used an a tag an
 ## Getting page level webmentions
 
 - Generate and put the post’s URL into context from gatsby-node.js
-- Filter the allWebMentionEntry with the URL aka &ldquo;the permalink&rdquo;
+- Filter the allWebMentionEntry with the URL aka "the permalink"
   - I just used the URL and added it to the createPages I already had.
 - This is taken from Knut&rsquo;s walk-through:
 

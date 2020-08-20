@@ -1,0 +1,52 @@
+
+# Table of Contents
+
+1.  [Emacs](#orge3a4909)
+2.  [Workflow](#org0d08223)
+3.  [Other things](#org72efc0c)
+
+-   tags:: [[Clojure]], [[ClojureFam]]
+
+
+<a id="orge3a4909"></a>
+
+# Emacs
+
+I know that Emacs is not Clojure but it is a LISP interpreter. I'm reading `Mastering Emacs` with some friends and finished the chapter for this week today.
+
+I was learning more about evaluating buggers and customizing Emacs - all of this is carried out in elisp - which isn't Clojure - but they share a lot of traits.
+
+
+<a id="org0d08223"></a>
+
+# Workflow
+
+I am writing this note in Emacs org-mode, my blog is written in mdx. I want to be able to export this file to mdx, copy it to the correct place and open it for editing. I'm told Emacs can do anything so let's go!
+
+I can convert this to Markdown with Spc-m-e-m-o which will create a file and open it for editing. I want some control over where that file is created though. Maybe I do that and then save another copy to the correct place?
+
+Okay - I've done that and now I have some things I'd like to change. The conversion has escaped all of the quotes. I'd like those to be replaced.
+
+&rsquo; -> '
+
+&lsquo; -> '
+
+&ldquo; -> "
+
+&rdquo; -> "
+
+So, spc-m-e is mapped to `org-export-dispatch` - I'm going to read the docs there to see if there is anything I can do to modify it.
+
+I found some other people with the issue and no fix for it yet. I've tried a few things and now I've asked on the Doom Emacs Discord server. They are super helpful there!
+
+Ah! It was more easy than I thought - I just had to turn off org-export-with-smart-quotes. I'd tried turning it on (but it was on by default) and actually I needed to turn it off.
+
+The next problem I have is links. For the tags, I use Emacs links and these are converted to MD links. I will look at that next time. I'm going to work through the Doom tutorials again and see what new things I can pick up. 
+
+
+<a id="org72efc0c"></a>
+
+# Other things
+
+It's hot in Brighton - I've mentioned that a few times, not least of all because British people love talking about the weather but also we aren't equipped for this. Thankfully it never lasts for long and soon we'll be complaining about the rain. For now though, I swam in the sea this morning and helped a neighbour erect another Covid-trampoline in the afternoon.
+

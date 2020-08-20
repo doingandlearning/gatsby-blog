@@ -1,0 +1,336 @@
+
+# Table of Contents
+
+1.  [Grammar of LISP](#org6cf57c1)
+    1.  [Values (nouns):](#org3c8a99f)
+    2.  [Symbol (verbs):](#orgcaad873)
+    3.  [Escape expression](#org7ab3a02)
+    4.  [List (Tree of language)](#org9e5c50f)
+2.  [Basic Types (nouns)](#orgc5e4fea)
+    1.  [Integers](#org07dbf70)
+    2.  [Fractional numbers](#orgbccacb9)
+    3.  [Mathematical operations](#org352d040)
+    4.  [Strings](#org56ca41c)
+    5.  [Booleans and Logic](#orgc729aa4)
+    6.  [Symbols](#orgb41ac2d)
+    7.  [Keywords](#org14f2eb3)
+    8.  [Lists](#org7b931b5)
+    9.  [Vectors](#orgf3c3c0f)
+    10. [Sets](#org2dea891)
+    11. [Maps](#orgfeb7d7a)
+3.  [Functions (verbs)](#orgc46aa4b)
+    1.  [Let bindings](#org1a77273)
+    2.  [Functions](#orgcb89ee9)
+    3.  [Vars](#orge87a4f8)
+    4.  [Defining functions](#org3124a5b)
+    5.  [How type works](#orgb8a9294)
+
+-   tags:: [[Clojure]], [[ClojureFam]]
+
+<a href="https://aphyr.com/tags/Clojure-from-the-ground-up">Source</a>
+
+
+<a id="org6cf57c1"></a>
+
+# Grammar of LISP
+
+
+<a id="org3c8a99f"></a>
+
+## Values (nouns):
+
+-   nil
+-   Boolean (true and false)
+-   Numbers (1, -47, 1.2e-4, 1/3)
+-   Strings ("Hi there!")
+
+
+<a id="orgcaad873"></a>
+
+## Symbol (verbs):
+
+-   Points toward a value
+-   Clojure evaluates to get the meaning
+-   Can be a value or a function
+
+
+<a id="org7ab3a02"></a>
+
+## Escape expression
+
+-   Use a single quote to escape an expression.
+-   Rather than evaluating the expression, is simply returns the text unchanged.
+
+
+<a id="org9e5c50f"></a>
+
+## List (Tree of language)
+
+-   (1 2 3) - single expression which has multiple parts.
+-   Evaluates from the inside out (BODMAS/PEDMAS)
+-   First element is a pointer to a &rsquo;verb&rsquo; - function or symbol pointing to function
+
+
+<a id="orgc5e4fea"></a>
+
+# Basic Types (nouns)
+
+[Clojure from the ground up: basic types](https://aphyr.com/posts/302-clojure-from-the-ground-up-basic-types)
+Clojure has a strong type system - operations on improper types are not allowed.
+
+Clojure types are dynamic - they are enforced when the program is run rather than when it is compiled.
+
+
+<a id="org07dbf70"></a>
+
+## Integers
+
+-   Long (MAX<sub>VALUE</sub> == 9223372036854775807)
+-   BigInt
+-   Short (MAX<sub>VALUE</sub> == 32767)
+-   Byte (MAX<sub>VALUE</sub> == 127)
+
+
+<a id="orgbccacb9"></a>
+
+## Fractional numbers
+
+-   Double (64bit precision)
+-   Float (32bit precision)
+-   Ratio (1/3 - exact!)
+
+
+<a id="org352d040"></a>
+
+## Mathematical operations
+
+-   + - \* /
+-   = and `= - double equals is more loose
+      (` 3 3.0) will be false
+    (== 3 3.0) will be true
+-   Operations with no terms will give the identity.
+    (+) => 0
+    (\*) => 1
+-   (< 1 2 3) will be true because 1 < 2 < 3
+-   (<= 1 1 2) will be true because 1 <= 1 <= 2
+-   inc and dec will add and subtract one to a number
+
+
+<a id="org56ca41c"></a>
+
+## Strings
+
+-   "Surrounded by double quotes"
+-   Most things can be coerced to a string with str:
+    (str "cat") = (str &rsquo;cat)
+-   str can also be used for concatenation
+    (str "meow " 3 " times") will be "meow 3 times"
+-   re-find is used to find with regular expressions:
+    (re-find #"cat" "mystic cat mouse") will return "cat"
+-   Regular expressions are #"&#x2026;"
+
+
+<a id="orgc729aa4"></a>
+
+## Booleans and Logic
+
+-   true, false and nil
+-   Everything but false and nil are true!
+-   Logical operators:
+    -   (and  )
+    -   (or   )
+    -   (not  )
+
+
+<a id="orgb41ac2d"></a>
+
+## Symbols
+
+-   &rsquo;str is a symbol
+-   (= str clojure.core/str) returns true
+-   (name &rsquo;clojure.core/str) returns "str"
+-   Symbols `refer` to things and `point` to other values.
+
+
+<a id="org14f2eb3"></a>
+
+## Keywords
+
+-   Keywords begin with a colon
+-   They aren&rsquo;t symbols as they won&rsquo;t be replaced by what they refer to
+-   Paired with other values in collections to help look up other values.
+
+
+<a id="org7b931b5"></a>
+
+## Lists
+
+`Collection` is a group of values
+`Containers` provide structure
+`Elements` or `Members` are inside of collections
+`list` is a type of collection
+
+-   We single quote to prevent lists being evaluated
+    &rsquo;(1 2 3)
+-   (list 1 2 3)
+-   Conjoin lists (conj &rsquo;(1 2 3) 4) => (4 1 2 3)
+-   (first &rsquo;(1 2 3)), (second &rsquo;(1 2 3)), (nth &rsquo;(1 2 3), 2)
+-   Zero indexed
+-   Well suited for small collection or things that are read in linear order. Slow if you want to get arbitrary elements from later.
+
+
+<a id="orgf3c3c0f"></a>
+
+## Vectors
+
+Square brackets.
+
+-   [1 2 3] Don&rsquo;t need to be quoted as they are evaluated differently from lists.
+-   (vector 1 2 3) returns [1 2 3]
+-   (vec (list 1 2 3)) returns [1 2 3]
+-   (conj [1 2 3] 4) returns [1 2 3 4]
+-   first, second and nth work but nth is fast for vectors
+-   (rest &#x2026;) and (next &#x2026;) returns everything but the first
+-   rest returns () when done and next returns nil
+-   (count [1 2 3])
+-   (= &rsquo;(1 2 3) [1 2 3]) if they contain the same elements in the same order they are considered equal.
+
+
+<a id="org2dea891"></a>
+
+## Sets
+
+Unordered collection of value - good for if you plan to ask questions like "does the collection have the number 3 in it?"
+
+-   \#{:a :b :c} => will not always be in the same order.
+-   (sort #{:a :b :c}) will return them in order
+-   (conj #{:a :b :c} :d)
+-   Conjoining will only contain each element once and will discard repeats.
+-   (disj #{"cow" "sheep"} #{"sheep"}) will return cow as this is the disjoin of the sets.
+-   (contains? #{1 2 3} 3) returns true
+-   Make any collection a set with the keyword
+    (set (1 2 3))
+
+
+<a id="orgfeb7d7a"></a>
+
+## Maps
+
+-   Key/Value pairs
+-   Surrounded by curly braces {&#x2026;} and filled with alternating keys and values.
+-   (get {"cat" "meow" "dog" "woof"} "cat") will return "meow"
+-   (get {:a 1 :b 2} :c) - will return false
+-   (get {:glinda :good} :wicked :not-here) can provide a default value as the 4th argument.
+-   (assoc {:bolts 1088} :camshafts 3) add to a map with assoc
+-   (assoc {:camshafts 3} :camshafts 2) if they key already exists the value will be overwritten.
+-   (merge {:a 1 :b 2} {:b 3 :c 4}) - this combines maps and will prefer values from the later maps.
+-   (dissoc {:potatoes 5 :mushrooms 2} :mushrooms) will remove a key/value pair.
+
+
+<a id="orgc46aa4b"></a>
+
+# Functions (verbs)
+
+
+<a id="org1a77273"></a>
+
+## Let bindings
+
+-   (let [cats 5] (str "I have " cats " cats.")) -> within that expression, cats will be replaced with 5.
+-   (let [+ -] (+ 2 3)) -> within that expression, + will be replaced with -.
+
+    (let [person   "joseph"
+          num-cats 186]
+             (str person " has " num-cats " cats!"))
+    (let [cats 3
+          legs (* 4 cats)]
+             (str legs " legs all together"))
+
+-   Multiple bindings in the [], evaluated in order.
+
+-   `let defines the menaing of symbols within an expression. Not globally scoped.`
+
+
+<a id="orgcb89ee9"></a>
+
+## Functions
+
+    ((fn [x] (+ x 1)) 2)
+
+-   This is defining the function and passing the value for x at the same time.
+-   Functions are declaring the relationship between the arguments and are evaluated later. `let` statements are evaluated immediately.
+-   There is a short hand for functions:
+    
+        (#(+ % 1) 2)
+-   This is equivalent to the above statment. `%` takes the place of the first argument, you can see `%1` and `%2` to take the place of the first and second arguments (and so on).
+
+
+<a id="orge87a4f8"></a>
+
+## Vars
+
+\#+BEGIN<sub>SRC</sub> clojure
+ (def cats 5)
+\#+END<sub>SRC</sub> clojure
+
+-   Now cats is globally defined as 5.
+-   Like symbols, they are references to other values.
+-   Symbol -> Var -> Function
+    -   We can change the meaning of the var at any time.
+    -   The symbol will still point to the var but you can point the var to any function.
+
+
+<a id="org3124a5b"></a>
+
+## Defining functions
+
+-   Different ways to define named functions:
+    
+           ;; Using def and fn
+           (def half (fn [number] (/ number 2)))
+        
+        ;; Using a simplier version.
+           (defn half [number] (/ number 2))
+        
+        ;; Defining different function calls defined by different number of arguments.
+           (defn half
+                 ([]  1/2)
+                 ([x] (/ x 2)))
+        
+        ;; Can take extra optional arguments
+        (defn vargs
+                 [x y & more-args]
+                 {:x    x
+                  :y    y
+                  :more more-args})
+        ;; You have to provide the named args but can have 0-> of the optional args.
+        ;; Able to provide doc-strings for the functions.
+        (defn launch
+          "Launches a spacecraft into the given orbit by initiating a
+           controlled on-axis burn. Does not automatically stage, but
+           does vector thrust, if the craft supports it."
+          [craft target-orbit]
+          "OK, we don't know how to control spacecraft yet.")
+        
+        ;; These automatically generate documentation.
+
+
+<a id="orgb8a9294"></a>
+
+## How type works
+
+-   Awesome case study here!
+    
+        ;; Is it a function?
+        (fn? type)
+        
+        ;; What does it's documentation say?
+        (doc type)
+        
+        ;; What about type's meta data?
+        (meta #'type)
+        
+        ;; What about the actual source code?
+        (source type)
+-   It&rsquo;s so cool to be able to see the source code of the base functions so easily. Can imagine it being a really amazing way to dig deeper - attempting to build your own implementations of base functions and then comparing to the core language.
+-   There are core axioms that can&rsquo;t be sources (def and let\*) for example.

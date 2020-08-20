@@ -133,7 +133,7 @@ postgres=# explain analyze select * from users where age > 40;
 
 # 05 CTE
 
-🧠 postgres doesn&rsquo;t like &ldquo;&rdquo; only &rsquo;&rsquo;
+🧠 postgres doesn&rsquo;t like "" only &rsquo;&rsquo;
 
 ```sql
 select user_handle, sku,

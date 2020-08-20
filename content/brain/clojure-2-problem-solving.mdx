@@ -1,0 +1,47 @@
+- tags:: [[Clojure]], [[ClojureFam]]
+
+I managed to get a chunk of problems on 4Clojure finished today - they're quite fun!
+I remember working through Euler problems when I was learning to code but I haven't
+done these koan style problems in a while. 
+
+It's quite an old site and is slow but it's pretty cool and it does the job.
+
+We kicked off our learning group - Thanes - God of Creation - I was reading something
+about a weird Dionynus->Thanes death/resurrection cult which apparently rose to
+rival Christianity in 400CE or so. I don't think we are up for that! But creativity
+and thought are two other aspects of Thanes that would be good to reflect during 
+this time.
+
+[[Clojure from the Ground Up]] is a fun resource. Really well written and really helpful.
+My notes for that are linked above.
+
+The thing that excited me most about Clojure today was the `source` function. With
+it you can see the base Clojure code of all of the core functions.
+
+For example,
+
+``` clojure
+(source +)
+```
+
+returns 
+
+``` clojure
+(defn +
+  "Returns the sum of nums. (+) returns 0. Does not auto-promote
+  longs, will throw on overflow. See also: +'"
+  {:inline (nary-inline 'add 'unchecked_add)
+   :inline-arities >1?
+   :added "1.2"}
+  ([] 0)
+  ([x] (cast Number x))
+  ([x y] (. clojure.lang.Numbers (add x y)))
+  ([x y & more]
+     (reduce1 + (+ x y) more)))
+```
+
+That's so cool!
+
+Frustrations have been trying to get Emacs to be setup the way I want it to be 
+for Clojure. I'm using Doom Emacs which I think is why things aren't as straight-
+forward as they might be but I'm going to persevere.

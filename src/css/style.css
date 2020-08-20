@@ -70,6 +70,20 @@ button {
   background: red;
 }
 
+.org-left {
+  @apply border border-black;
+}
+
+.org-right {
+  @apply border border-black;
+}
+
+p code {
+  background: #e3e3e3;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
 /**
  * Remove the default PrismJS theme background-color, border-radius, margin,
  * padding and overflow.
