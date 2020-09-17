@@ -1,0 +1,84 @@
+- tags:: [[Clojure]], [[ClojureFam]]
+
+# What is ClojureScript?
+
+I've done a good chunk of Clojure over the past three weeks. I'm not bad at the basics and can solve a number of abstract coding problems - but what is ClojureScript.
+
+ClojureScript is a compiler that targets JavaScript. That's straight-forward enough!
+
+# Quick Start - [ClojureScript - Quick Start](https://clojurescript.org/guides/quick-start)
+
+I'm going to ignore the tutorial slightly here and use the reagent scaffolding from Leiningen. I know that Athens, the project that birthed ClojureFam, is build on this and learning reagent is part of the curriculum.
+
+This is actually different from what I was expecting - the scaffolding has two folders now - dev and prod.
+
+Ah! I might actually divert and instead build an app with plain hiccup and JS interop for now.
+
+I'll keep my lein project for later and do what I'm told in the quick-start guide ;)
+
+Cool - so, I've got it up and running with doing very little! I had an issue that my port was already in use. It didn't report which port it was and I couldn't see what was listening but I found I could pass a port variable to be able to solve the problem.
+
+    clj --main cljs.main --port 5555 --compile hello-world.core --repl
+
+If I'm reading the documentation correctly then I should be able to interact with the REPL now - I don't seem to be able to though. Weird. I thought the output might be in the browser terminal but that isn't true either. I'm using Emacs embedded terminal (vterm in particular) so I'm going to try my system terminal to see if I have any more luck.
+
+Nope - that doesn't work either. Interestingly though, as vterm and iterm are sharing the same config the history is shared - that's cool!
+
+Right, well I'm not going to get stuck on the "why is the REPL not working" rabbit hole. Except I need it in the next line of the tutorial - I'm going to delete the out folder and see if that fixes it!
+
+It did not! I wonder if the connection isn't working.
+
+The output on the browser says this:
+
+    This page hosts your REPL and application evaluation environment. Validate the connection by typing (js/alert "Hello CLJS!") in the REPL
+
+I wonder if there is a problem with my connection?
+
+Ah! The tutorials I've just checked suggest using shadow-cljs instead.
+
+Round 3!
+
+# shadow-cljs
+
+Okay - so the first thing to do is to install the tool :)
+
+I've used npx to create a project and then I'm running it.
+
+    npx create-cljs-project shadow_tutorial
+    shadow-cljs watch app
+
+I'm hoping this will get me to the right place. Okay - it doesn't because there is no config for the build "app" - I wonder if shadow-cljs has an option for that? Doesn't look like it - checking out the shadow-cljs Git repo to see if there is anything there.
+
+Ah! It says to use the node or browser repl - let's try
+
+    npx shadow-cljs browser-repl
+
+That's getting further. Woohoo! I'm now where I thought I should be before I left the last tutorial.
+
+I'm going to return to that and see if I can finish it off.
+
+Weird - there is no code in the src/main or src/test directory! What am I seeing! I can execute (js/alert "Hello!") in the REPL and it displays an alert though. That's cool.
+
+Right - I'm going to create a core file. Interesting - the (ns main.core) appears automatically.
+
+    (require '[main.core :as main] :reload)
+
+Actually, I'm back to following the Github repo tutorial (<https://github.com/thheller/shadow-cljs>). It had a build variable so I was able then to run the watch command. Nice!
+
+Turns out my namespace auto completion was an issue because it added the main to the start of the namespace. I don't know where I've configured that but I'll need to be careful :)
+
+I've added the build server but my build hasn't created an index.html. Ah! I have to create it!
+
+Okay - the documentation ends there. I've tried \`shadow-cljs cljs-repl frontend\` which has given me a cool dashboard. Ah! And the repl is connected to my server port - I think I'm getting there :)
+
+Woohoo! Now, I'm going to finish the clojure script tutorial.
+
+I had to hit the recompile button on my browser but I was able to get the average function working.
+
+I'm not getting reagent up and running - adding dependencies means I have to restart the server but that's okay :)
+
+Ah - I need to have the watch running in a different terminal! And then jack-in - cool! Starting to get this.
+
+So - I managed to get a counter up and running using a combination of lein, shadow-cljs and reagent - I don't know how much of this was required but I got it :)
+
+I'm going to try something more challenging tomorrow and hopefully there will be more progress.
