@@ -1,0 +1,95 @@
+---
+title: 'Dealing with a database with Next.js API routes'
+date: '2020-10-13T00:00:00'
+layout: post
+draft: false
+path: '/posts/dealing-with-a-database-with-nextjs-api-routes'
+category: 'Migrating to Next API Routes'
+tags:
+  - 'React'
+  - 'NextJS'
+  - 'APIs'
+description: ''
+---
+
+With Next API routes serverless functions become much more accessible. But in a serverless world, maintaining a connection with a database isn't achieved in the same way.
+
+## How did this work before?
+
+Previously we may have provisioned, maintained and benefited from persistent servers. When our server starts, it connects with and maintains a connection to our database.
+
+Any web-request that requires information from the database would use this connection.
+
+Here is how I might have achieved it with Mongoose & MongoDB.
+
+```
+const mongoose = require('mongoose');
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+```
+
+Once declared and bound, this database connection is available throughout the application. We can carry out read/write operations to our database and gather the content for our clients.
+
+In high-traffic situations, you have a few options. They are generally quite manual though. If you get a lot of traffic, you could increase the pool of connections. This allows for multiple requests and responses to be dealt with simulataneously. You could also increase the number of servers to handle the requests, behind a load balancer normally. Or, you could heavily cache your responses allowing for less demand on the database layer.
+
+## Why are things different in a serverless world?
+
+With Next, each API route is deployed as a serverless function. As one of these routes is accessed, the function spins up and processes the request. For some time after that request, the environment remains active.
+
+Previously, we have been able to assume that the connection is alive. Now, like Schrödinger's cat, it could be either alive or dead. Until we observe it.
+
+Our code then changes then to check whether we have an active connection.
+
+```
+// /utils/db.js
+import mongoose from "mongoose";
+require("dotenv").config();
+
+export default async () => {
+  // here is where we check.
+  if (mongoose.connections[0].readyState) return;
+
+  try {
+    // Using new database connection
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to database.");
+  } catch (error) {
+    console.log("DB error", error);
+  }
+};
+```
+
+The other consideration is that each specific route is atomic. This means that we need to check for the database status in each route rather than centrally. So, our utility from above needs to be imported and used on every route.
+
+```
+import connectToDb from "utils/db";
+
+export default async (req, res) => {
+  await connectToDb();
+ ...
+};
+```
+
+## What happens in high traffic situations now?
+
+Now that every route is handled separately, our environments will automatically provide more of that route if it is needed. We don't have to keep a server up and running when we don't need it. We also don't have to provide a whole new server if it is only one or two routes that are being requested more often.
+
+Serverless doesn't mean no server, but rather no server that we are responsible for! These functions are generally very reliable. Not only that, if one crashes another will spin up to take its place.
+
+---
+
+Thoughts or ideas? Let me know if I'm missing anything, here or on [Twitter](https://www.twitter.com/dolearning).

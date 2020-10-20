@@ -31,8 +31,12 @@ class PostTemplate extends React.Component {
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={openGraphImage} />
+            <link
+              rel="canonical"
+              href={`https://kevincunningham.com${post.fields.slug}`}
+            />
           </Helmet>
-          <PostTemplateDetails {...this.props} />
+          <PostTemplateDetails {...this.props} thumbnail={openGraphImage} />
         </div>
       </Layout>
     )

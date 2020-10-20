@@ -23,7 +23,7 @@ class ArticleRoute extends React.Component {
           </Helmet>
           <Sidebar {...this.props} />
           <div className="content">
-            <div className="content__inner">{items}</div>
+            <div className="content__inner grid grid-cols-1 lg:grid-cols-2 gap-2">{items}</div>
           </div>
         </div>
       </Layout>

@@ -25,11 +25,14 @@
   "license": "MIT",
   "dependencies": {
     "@aengusm/gatsby-theme-brain": "^1.0.13",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.18",
     "@reach/dialog": "^0.10.5",
     "@theme-ui/color": "^0.3.1",
     "bluebird": "^3.5.1",
+    "date-fns": "^2.16.1",
     "gatsby": "^2.24.62",
     "gatsby-plugin-catch-links": "^2.3.12",
     "gatsby-plugin-feed-mdx": "^1.0.1",
@@ -66,6 +69,7 @@
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-helmet": "^5.2.0",
+    "react-markdown": "^4.3.1",
     "react-social-icons": "^4.1.0",
     "recharts": "^1.8.5",
     "typeface-ibm-plex-sans": "0.0.75"

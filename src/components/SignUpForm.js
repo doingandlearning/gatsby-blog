@@ -1,34 +1,48 @@
 import React from 'react'
-import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { Dialog, DialogContent, DialogOverlay } from '@reach/dialog'
-import '@reach/dialog/styles.css'
+
+<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+
+const PostSubmissionMessage = ({ response }) => {
+  return (
+    <div className="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <p>Success! Thanks for signing up!</p>
+      <p>You can confirm by clicking the link in your email.</p>
+    </div>
+  )
+}
 
 const SignUp = () => {
   const [successful, setSuccessful] = React.useState(false)
   const [message, setMessage] = React.useState()
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
-  const [showDialog, setShowDialog] = React.useState(false)
-  const [error, setError] = React.useState(false)
-  const close = () => setShowDialog(false)
-
-  const handleSubmit = async e => {
+  const [error, setError] = React.useState('')
+  const [response, setResponse] = React.useState('')
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setError(false)
-    const listFields = {
-      FNAME: name,
-      PATH: window.location.pathname,
+
+    const fields = {
+      email_address: email,
+      first_name: name,
     }
-    const result = await addToMailchimp(email, listFields)
-    if (result.result === 'success') {
-      setMessage(
-        "Thanks for signing up. I've sent you a confirmation email to give you a chance to change your mind. :)"
-      )
+    const resp = await fetch(
+      `https://app.convertkit.com/forms/1697448/subscriptions`,
+      {
+        method: 'post',
+        body: JSON.stringify(fields, null, 2),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    const result = await resp.json()
+    setResponse(result)
+    if (result.status === 'success') {
       setSuccessful(true)
-      setShowDialog(true)
     }
 
-    if (result.result === 'error') {
+    if (result.status === 'error') {
       setMessage(result.msg)
       setError(true)
     }
@@ -36,33 +50,12 @@ const SignUp = () => {
 
   return (
     <div>
-      <div className="text-center w-1/3">
-        <Dialog isOpen={showDialog} onDismiss={close}>
-          <DialogOverlay
-            style={{ background: 'hsla(0, 100%, 100%, 0.9)' }}
-            isOpen={showDialog}
-            onDismiss={close}
-          >
-            <DialogContent
-              style={{
-                boxShadow: '0px 10px 50px hsla(0, 0%, 0%, 0.33)',
-                width: '30vw',
-              }}
-            >
-              <p>{message}</p>
-            </DialogContent>
-          </DialogOverlay>
-        </Dialog>
-      </div>
       {!successful && (
         <div className="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="mt-1 text-center text-xl leading-9 font-extrabold text-gray-900">
-              Sign up for my newsletter
+              Sign up for new content and web highlights
             </h2>
-            <p className="font-light text-center">
-              I'll not overload your inbox!
-            </p>
           </div>
 
           <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
@@ -81,7 +74,7 @@ const SignUp = () => {
                       type="text"
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                       value={name}
-                      onChange={e => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -99,7 +92,7 @@ const SignUp = () => {
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                       value={email}
-                      onChange={e => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -107,7 +100,7 @@ const SignUp = () => {
                   <span className="block w-full rounded-md shadow-sm">
                     <button
                       type="submit"
-                      className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange hover:bg-indigo-500 focus:outline-none focus:border-orange focus:shadow-outline-orange active:bg-orange transition duration-150 ease-in-out"
                     >
                       Sign up
                     </button>
@@ -118,7 +111,7 @@ const SignUp = () => {
           </div>
         </div>
       )}
-
+      {successful && <PostSubmissionMessage response={response} />}
       {error && <div className="text-red-800 text-center">{message}</div>}
     </div>
   )

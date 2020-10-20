@@ -11,10 +11,10 @@ class CategoryTemplateDetails extends React.Component {
     })
 
     return (
-          <div className="page">
-            <h1 className="text-3xl my-3">{category}</h1>
-            <div className="page__body">{items}</div>
-          </div>
+      <div className="page">
+        <h1 className="text-3xl my-3">{category}</h1>
+        <div className="page__body grid grid-cols-1 lg:grid-cols-2 gap-2">{items}</div>
+      </div>
     )
   }
 }
